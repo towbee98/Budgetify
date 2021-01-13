@@ -8488,38 +8488,36 @@ var makeApiCall = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log(params);
-            _context.prev = 1;
-            _context.next = 4;
+            _context.prev = 0;
+            _context.next = 3;
             return (0, _axios.default)({
               method: "post",
               url: url,
               data: params
             });
 
-          case 4:
+          case 3:
             res = _context.sent;
-            console.log(res.data.status);
 
             if (res.data.status === "Success") {
               (0, _alerts.showAlert)("success", "logged in successful !!");
               window.setTimeout(window.location.replace("/userProfile"), 2000);
             }
 
-            _context.next = 12;
+            _context.next = 10;
             break;
 
-          case 9:
-            _context.prev = 9;
-            _context.t0 = _context["catch"](1);
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
             (0, _alerts.showAlert)("error", _context.t0.response.data.message); //console.log(error.response.data);
 
-          case 12:
+          case 10:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 9]]);
+    }, _callee, null, [[0, 7]]);
   }));
 
   return function makeApiCall(_x, _x2) {
@@ -8590,7 +8588,6 @@ var logOut = /*#__PURE__*/function () {
 
           case 3:
             res = _context3.sent;
-            console.log(res.data.status);
 
             if (res.data.status === "success") {
               //showAlert("success", "logged in successful !!");
@@ -8598,20 +8595,20 @@ var logOut = /*#__PURE__*/function () {
               window.setTimeout(window.location.assign("/"), 1000);
             }
 
-            _context3.next = 11;
+            _context3.next = 10;
             break;
 
-          case 8:
-            _context3.prev = 8;
+          case 7:
+            _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
             (0, _alerts.showAlert)("error", _context3.t0.response.data.message); //console.log(error.response.data);
 
-          case 11:
+          case 10:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 8]]);
+    }, _callee3, null, [[0, 7]]);
   }));
 
   return function logOut() {
@@ -8672,8 +8669,6 @@ var updatePasswordData = function updatePasswordData(password, currentPassword, 
       passwordConfirm: passwordConfirm
     }
   }).then(function (result) {
-    console.log(result);
-
     if (result.data.status === "Success") {
       (0, _alerts.showUpdateAlert)("success", "Password updated successfully!!");
     }
@@ -31287,7 +31282,6 @@ if (document.querySelector(".user-account")) {
     var lastName = document.querySelector("#last-name").value;
     var username = document.querySelector("#user-name").value;
     var email = document.querySelector("#e-mail").value;
-    console.log(firstName, lastName, username, email);
     (0, _updateSettings.updateData)(firstName, lastName, username, email);
   });
 }
@@ -31300,14 +31294,13 @@ if (document.querySelector(".user-password")) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            console.log("Password update form exist on this page");
             event.preventDefault();
             password = document.querySelector("#password").value;
             currentPassword = document.querySelector("#currentPassword").value;
             passwordConfirm = document.querySelector("#passwordConfirm").value;
             (0, _updateSettings.updatePasswordData)(password, currentPassword, passwordConfirm);
 
-          case 6:
+          case 5:
           case "end":
             return _context6.stop();
         }

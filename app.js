@@ -52,6 +52,8 @@ app.use(mongoSanitize());
 //Data Sanitization against XSS
 app.use(xss());
 
+//Compress all text and html cotents in responses
+app.use(compression());
 //Routes
 
 app.use("/api/users", userRouter);

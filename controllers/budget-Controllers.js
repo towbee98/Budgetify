@@ -36,7 +36,7 @@ exports.createBudget = catchAsync(async (req, res, next) => {
     user: req.user._id,
     budget: req.body.budget,
   });
-  console.log(budget);
+  //console.log(budget);
   const query = await budget.save();
 
   res.status(201).json({
@@ -51,7 +51,7 @@ exports.updateBudget = catchAsync(async (req, res, next) => {
   //   new: true,
   //   runValidators: true,
   // });
-  console.log(req.user);
+  //console.log(req.user);
   const budget = await Budget.findOneAndUpdate(
     { _id: req.params.id, user: req.user._id },
     req.body,

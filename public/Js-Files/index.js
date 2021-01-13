@@ -269,7 +269,6 @@ if (document.querySelector(".user-account")) {
     const username = document.querySelector("#user-name").value;
     const email = document.querySelector("#e-mail").value;
 
-    console.log(firstName, lastName, username, email);
     updateData(firstName, lastName, username, email);
   });
 }
@@ -277,7 +276,6 @@ if (document.querySelector(".user-account")) {
 if (document.querySelector(".user-password")) {
   //console.log(document.querySelector("#update"));
   document.querySelector("#update").addEventListener("click", async () => {
-    console.log("Password update form exist on this page");
     event.preventDefault();
     const password = document.querySelector("#password").value;
     const currentPassword = document.querySelector("#currentPassword").value;

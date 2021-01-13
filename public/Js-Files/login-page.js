@@ -2,14 +2,13 @@ import axios from "axios";
 import { showAlert } from "./alerts";
 
 const makeApiCall = async (url, params) => {
-  console.log(params);
   try {
     const res = await axios({
       method: "post",
       url,
       data: params,
     });
-    console.log(res.data.status);
+
     if (res.data.status === "Success") {
       showAlert("success", "logged in successful !!");
       window.setTimeout(window.location.replace("/userProfile"), 2000);
@@ -48,7 +47,7 @@ export const logOut = async () => {
       method: "get",
       url: `http://localhost:4400/api/users/logOut`,
     });
-    console.log(res.data.status);
+
     if (res.data.status === "success") {
       //showAlert("success", "logged in successful !!");
       //location.reload(true);

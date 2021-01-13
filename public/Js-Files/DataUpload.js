@@ -37,8 +37,7 @@ const filterObj = function (obj, ...allowedFields) {
 
 export const createExpense = (data) => {
   const filteredData = filterObj(data, "title", "allocated");
-  console.log(filteredData);
-  axios({
+ 
     method: "POST",
     url: `http://localhost:4400/api/budgets/${data.budgetId}/expenditures`,
     data: filteredData,
@@ -64,7 +63,7 @@ export const createExpense = (data) => {
 
 export const updateExpense = (data) => {
   const filteredData = filterObj(data, "title", "spent", "allocated", "_id");
-  console.log(filteredData);
+  
   axios({
     method: "PATCH",
     url: `http://localhost:4400/api/budgets/${data.budgetId}/expenditures`,
@@ -96,7 +95,6 @@ export const deleteExpense = (data) => {
     data: filteredData,
   })
     .then((res) => {
-      console.log(res);
       if (res.status === 204) {
         showUpdateAlert("success", "Expense deleted successfully!!", "pop");
         setTimeout(window.location.reload(true), 500);
@@ -121,7 +119,7 @@ export const deleteBudget = (budgetId) => {
     url: `http://localhost:4400/api/budgets/${budgetId}`,
   })
     .then((res) => {
-      console.log(res);
+     // console.log(res);
       if (res.status === 204) {
         showUpdateAlert("success", "Budget deleted successfully!!", "pop");
         setTimeout(window.location.replace("/userProfile"), 500);

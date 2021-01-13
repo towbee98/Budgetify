@@ -90,7 +90,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
   ) {
-    console.log(req.headers.authorization);
+    //console.log(req.headers.authorization);
     token = req.headers.authorization.split(" ")[1];
   } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
@@ -103,7 +103,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
   //2.) Verify the token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  console.log(decoded);
+  //console.log(decoded);
   //3.)Check if user still exists
   const currentUser = await User.findById(decoded.id);
   if (!currentUser) {
@@ -133,7 +133,7 @@ exports.isLoggedin = async (req, res, next) => {
       req.cookies.jwt,
       process.env.JWT_SECRET
     );
-    console.log(decoded);
+    //console.log(decoded);
 
     //2.)Check if user still exists
     const currentUser = await User.findById(decoded.id);
@@ -154,8 +154,8 @@ exports.isLoggedin = async (req, res, next) => {
 
 exports.restrictUser = (...roles) => {
   return (req, res, next) => {
-    console.log(req.user);
-    console.log(roles);
+    //console.log(req.user);
+    //console.log(roles);
     if (!roles.includes(req.user.role)) {
       return next(new AppError("Restricted from performing this action", 403));
     }
@@ -237,7 +237,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   //1.)Get user from db
   //console.log(req);
   const user = await User.findById(req.user.id).select("+password");
-  console.log(user);
+  // console.log(user);
   //2.)Check if the posted password is correct
   if (!(await user.checkPassword(req.body.currentPassword, user.password))) {
     return next(new AppError("Sorry invalid password", 404));

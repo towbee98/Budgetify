@@ -44,7 +44,6 @@ export const updatePasswordData = (
     },
   })
     .then((result) => {
-      console.log(result);
       if (result.data.status === "Success") {
         showUpdateAlert("success", "Password updated successfully!!");
       }

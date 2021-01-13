@@ -55,7 +55,7 @@ function makeApiCall(url, params) {
     headers: myheaders,
     body: JSON.stringify(params),
   });
-  console.log(request);
+
   fetch(request)
     .then((response) => {
       if (response.ok) {
@@ -64,7 +64,7 @@ function makeApiCall(url, params) {
         return Promise.reject(response);
       }
     })
-    .then((response) => console.log((msg = Object.values(response)[0])))
+    .then((response) => (msg = Object.values(response)[0]))
     .then(() => {
       signUpMessage.textContent = msg;
       signUpMessage.style.display = "block";
