@@ -1,0 +1,39 @@
+extends index
+
+block head
+ link(rel='stylesheet' href='/CSS/Sign-Up-Page.css')
+block content
+  section
+    img(src='/sign-up/register-user.png' alt='').user-icon
+    h3 Register
+    form
+      .user-details
+        .input-field
+          label FIRSTNAME
+          input(type='text' name='firstname'  placeholder='Enter Firstname' required)#firstname
+        .input-field
+          label LASTNAME
+          input(type='text' name='lastname'  placeholder='Enter Lastname' required)#lastname
+      .user-details
+        .input-field
+          label(for='username').user-1 USERNAME
+          input(type='text' name='username'  placeholder='Enter Username' required)#username
+        .input-field
+          label(for='email').user-1 E-MAIL
+          input(type='email' name='email'  placeholder='Enter Email' required)#email
+      .user-details
+        .input-field
+          label PASSWORD
+          input(type='password' name='password' placeholder='Input Password' maxlength='12' required)#password
+      input(type='submit' value='Sign Up')#Sign-up
+
+      .sign-up-message
+      .login-link Click 
+        a(href='/login-page/' target='_blank') Here to login
+      .loader
+        img(src='/sign-up/5.svg')
+
+  .illustration
+  block scripts
+    script(src='/Js-Files/Sign-Up-Page.js') 
+

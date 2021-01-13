@@ -1,0 +1,26 @@
+extends index
+block head
+    link(rel="stylesheet" href="/CSS/contact-us.css")
+block content
+    section
+      form(action="" method="post")
+        h2 Drop a message
+        .user-details
+          .input-field
+            input(type="text" name="firstname" id="firstname" class="user-1" required)
+            label( for="firstname") FIRSTNAME       
+          .input-field
+            input(type="text" name="lastname" id="lastname" class="user-1" required)
+            label LASTNAME
+          .input-field
+            input(type="email" name="email"  id="email" class="user-1" required)
+            label(for="e-mail") E-MAIL
+          .input-field
+            input(type="number" name="phone-number"  id="phone-number" class="user-1" required)
+            label(for="phone-number") Phone Number        
+        textarea(name="message"  id="message" cols="30"  rows="10"   placeholder="Enter your message here")
+        input(type="submit" value="Submit" id="Submit")
+        .msg-sent message sent
+        .msg-not-sent message not sent
+    .illustration
+    //-  <script src="/Js-Files/contact-us.js"></script>

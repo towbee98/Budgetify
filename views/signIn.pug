@@ -1,0 +1,38 @@
+extends index
+block head
+    link(rel="stylesheet", href="/CSS/login-page.css")
+    link(rel='stylesheet' href="/CSS/css/all.css")
+    //- script(src="/login-page/js_folder/jquery-3.4.1.js")
+block content
+    section
+        img(src="/login-page/user-icon.png", alt="").user-icon
+        h3 Sign In
+        form.form
+            .input-field
+                i(class='fas fa-user')
+                input(type='text' name='username' placeholder='USERNAME' required)#username
+            br
+            .input-field
+                i(class='fas fa-lock')
+                input(type='password' name='password' placeholder='PASSWORD' required)#password
+            br
+            input(type="submit" value='Login')#login-btn
+            br
+            .login-message
+            //- span.remember
+            //-     input(type='checkbox' name='remember-me' )#remember-me
+            //-    / label Remember me
+            .loader
+                img(src="/sign-up/5.svg", alt="loading...")
+            label(for="Forgot-password").forgot-password
+                a(href="#") Forgot Password?
+        .line-through
+        p Don't have an account ? 
+            a(href="/signUp") REGISTER HERE
+    .illustration
+    
+     //- script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
+     //- script(src="/Js-Files/login-page.js")
+     //- script(src='/Js-Files/bundle.js')
+     
+

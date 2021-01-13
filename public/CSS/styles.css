@@ -1,0 +1,226 @@
+body{
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+header{
+    background: #2B3252;
+    padding: 10px 10px;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items: center;
+    margin: -10px;
+    width: 100%;
+    z-index: 3;
+    position: sticky;
+}
+.logo{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+}
+.logo span{
+    color: #EF5455;
+}
+.toggle-btn{
+    display: block;
+    margin-right: 0;
+}
+.box{
+    width: 23px;
+    margin-bottom: 4px;
+    height: 2px;
+    background-color: #FFFFFF;
+}
+.toggle-bar-1{
+    opacity:1;
+    transition: opacity 700ms ease-in-out 1s;
+}
+.toggle-bar-2{
+    transform: rotateZ(0) translateX(0);
+    transition: transform 700ms ease-in-out 1s;
+}
+.toggle-bar-3{
+    transform: rotateZ(0) translateX(0) translateY(0);
+    transform-origin: center;
+    transition: transform 700ms ease-in-out 1s;
+}
+.main-nav{
+    position: absolute;
+    top: 35px;
+    left: -300px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 200px;
+    background-color: #2B3252;
+    align-items: center;
+    opacity: 1;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:medium;
+    transition: left 700ms ease-in-out 1s ;
+    z-index: 2;
+}
+.main-nav span{
+    margin-top: 70px;
+}
+ a{
+     text-decoration: none;
+    color: #FFFFFF;
+}
+section{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top:20px;
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    background-color: #FFFFFF;
+    justify-content: space-between;
+}
+.introduction{
+    position: relative;
+    text-align: center;
+    width: 200px;
+    height: max-content;
+    margin: auto auto 0 auto;
+    height: 300px;
+    left: -1000px;
+    animation: moveright 2000ms  1s 1 forwards;
+    z-index: 1;
+    font-size: 12px;
+    color: #2B3252;
+}
+.register{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.register div{
+    border: 1px solid;
+    padding: 5px 10px;
+    border-radius: 15px;
+    border-color: #EF5455;
+    font-size: medium;
+}
+.register div:hover{
+    background: #EF5455;
+}
+.register div a{
+    color: black;
+}
+.illustration{
+    width: 100vh;
+    background: #EF5455;
+    margin: 0 -20px 0 -10px;
+    position: relative;
+    right: -1000px;
+    animation: moveLeft 2000ms  1s 1 forwards ;
+    display: inline-block;
+
+}
+.illustration img{
+    margin-top: 50px ;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top:-1000px;
+    animation: movedown 2000ms  3s 1 forwards ;
+}
+@keyframes moveright{
+    0%{
+        left: -1000px;
+    }
+    100%{
+        left: 0;
+    }
+}
+@keyframes moveLeft{
+    0%{
+        right: -1000px;
+    }
+    100%{
+        right: 0;
+    }  
+}
+@keyframes movedown{
+    0%{
+        top:-1000px;
+    }
+    100%{
+        top: 0;
+    }
+}
+@media(min-width:400px){
+    .introduction{
+        margin: auto;
+    }
+}
+@media(min-width:700px){
+    header{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin:-10px;
+    }
+    .toggle-btn{
+        margin-right: 500px;
+    }
+    section{
+        font-family:Arial, Helvetica, sans-serif;
+        margin:  10px -10px  -10px -10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: #FFFFFF;
+        justify-content: flex-start;
+        height: 100vh;
+    }
+    .introduction{
+        position: relative;
+        text-align: center;
+        width: 250px;
+        margin: auto;
+        height: 50vh;
+        left: -1000px;
+        animation: moveright 2000ms  1s 1 forwards;
+        z-index: 1;
+        font-size: 15px;
+    }
+    .illustration{
+        width: 50%;
+        height: 100vh;
+    }
+    .illustration img{
+        width: 100%;
+        height: 80%;
+    }
+    .illustration::before{
+        border-top: 340px solid transparent;
+        border-bottom: 340px solid transparent;
+        border-right: 140px solid #EF5455;
+        content: "";
+        height: 0;
+        left:-140px;
+        position: absolute;
+        width:0;
+    }
+}
+@media(min-width:1195px){
+    @keyframes moveright{
+        0%{
+            left: -1000px;
+        }
+    
+        50%{
+            left: 0;
+        }
+        100%{
+            left: -50px;
+        }
+    }
+    body{
+        overflow-y: hidden;
+    }
+}

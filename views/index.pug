@@ -1,0 +1,36 @@
+doctype html
+html
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        title Budgetify | #{title}
+        link(rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png")
+        link(rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png")
+        link(rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png")
+        link(rel="manifest" href="favicon_io/site.webmanifest")
+        block head
+         link(rel='stylesheet' href='/CSS/styles.css')
+        //- link(rel='stylesheet' href='/sign-up/Sign-Up-Page.css')
+    body
+        // header
+        include _headers
+        // Content
+        block content
+            section
+                .introduction
+                    h1 Manage and Control Your Expenditure
+                    p  From budgets to bills and  many more,you’ll discover the effortless way to stay on top of it all.
+                    .register
+                        .Sign-up 
+                            a(href='/SignUp') Sign Up
+                        .Login
+                            a(href='/SignIn') Login
+                .illustration
+                    img(src='project-img.jpg' alt='People carrying money')
+        scripts
+         //- script(src='/Js Files/app.js')
+         script(src='/Js-Files/bundle.js')
+        
+
+
+

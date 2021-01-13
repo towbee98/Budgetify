@@ -1,0 +1,25 @@
+header
+    .toggle-btn
+        .toggle-bar-1.box
+        .toggle-bar-2.box
+        .toggle-bar-3.box
+    .logo Budg
+        span etify
+nav.main-nav
+    span
+        a(href='#') Home
+    span
+        if user
+            a LogOut
+        else
+            a(href='/SignIn') Login
+    if budget
+        span
+            a(href='/userProfile') User Profile
+         
+    span
+        a(href='/AboutUs') About
+    span
+        a(href='/ContactUs') Contact
+    span
+        a(href='#') Privacy Policy

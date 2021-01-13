@@ -1,0 +1,82 @@
+extends index
+
+block head
+    link(rel="stylesheet", href="/CSS/css/all.css")
+    link(rel="stylesheet", href="/CSS/budget-profile.css")
+
+block content
+    .backdrop
+    .title Budget Profile
+    section
+        .budget-info
+            .budget-details
+                div Welcome,
+                    span.user-fullname #{user.firstName} #{user.lastName}
+                div Total Allocation:&nbsp;#
+                    span(class="total-allocation" data-id=`${budget._id}`) #{budget.budget}
+                div Unallocated:&nbsp;#
+                    span.unallocated  #{budget.budget - budget.totalExpenses}
+            .budget-breakdown
+                .period-title Expenditures
+                each expense in budget.expenditures
+                    .item
+                        div
+                            div(data-id=`${expense._id}`)
+                                p.item-name #{expense.title}
+                                i(class='fas fa-pencil-alt edit-expense')
+                                i(class="far fa-trash-alt delete-expense")
+                            - const percentValue=Math.floor((expense.spent/expense.allocated)*100 )
+                            .myProgress
+                                #myBar
+                            span.percent-value #{percentValue}%
+                        .item-data
+                            .item-budget 
+                                strong Allocated:#
+                                i #{expense.allocated}
+                            .item-expenses 
+                                strong Spent: #
+                                i #{expense.spent}
+        .extra-info                       
+            .chart-illustration
+                canvas#pieChart
+            .add-new-expenditure-container
+                form
+                    div
+                        input(type="text" name='item' placeholder='Item Name')#item
+                        input(type='number' name='allocated-budget' placeholder='Allocated budget')#Amount
+                    
+                    input(type="submit", value="ADD" class="add-new-expenditure")
+                    //-   i.add-new-expenditure ADD
+                .add-expenditure 
+                    button Add New Expenditure
+                .delete-budget
+                    button Delete Budget
+    .edit-budget-container
+        h2 Edit Expenditure
+        form
+            label(for="title") Title 
+            br
+            input(type="text", name="title" value=``)#expense-title
+            br
+            label(for="allocated-Amount") Allocated Amount 
+            br
+            input(type="number", name="allocated-Amount" value=``)#expense-Allocated
+            br
+            label(for="Spent") Spent
+            br
+            input(type="number", name="Spent" value=``)#expense-Spent
+            br
+            input(type="button", value="Cancel").expense-Cancel
+            input(type="submit", value="Save")#expense-Save
+    .delete-expense-container
+        h2 Delete Expense
+        form
+            input(type="button", value="NO").expense-Cancel
+            input(type="submit", value="YES")#expense-delete
+    .delete-budget-container
+        h2 Delete Budget
+        form 
+            input(type="button", value="NO").expense-Cancel
+            input(type="submit" value="YES")#delete-budget
+    block scripts
+     //- script(src="/Js-Files/budget-profile.js")    
