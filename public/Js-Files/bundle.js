@@ -8541,7 +8541,7 @@ var login = /*#__PURE__*/function () {
               username: user,
               password: password
             };
-            url = "http://localhost:4400/api/users/login"; // $.ajax({
+            url = "/api/users/login"; // $.ajax({
             //   type: "POST",
             //   url: url,
             //   dataType: "json",
@@ -8583,7 +8583,7 @@ var logOut = /*#__PURE__*/function () {
             _context3.next = 3;
             return (0, _axios.default)({
               method: "get",
-              url: "http://localhost:4400/api/users/logOut"
+              url: "/api/users/logOut"
             });
 
           case 3:
@@ -8635,7 +8635,7 @@ var updateData = function updateData(firstName, lastName, username, email) {
   //try {
   (0, _axios.default)({
     method: "PATCH",
-    url: "http://localhost:4400/api/users/updateMe",
+    url: "/api/users/updateMe",
     data: {
       firstName: firstName,
       lastName: lastName,
@@ -8662,7 +8662,7 @@ exports.updateData = updateData;
 var updatePasswordData = function updatePasswordData(password, currentPassword, passwordConfirm) {
   (0, _axios.default)({
     method: "PATCH",
-    url: "http://localhost:4400/api/users/updatePassword",
+    url: "/api/users/updatePassword",
     data: {
       password: password,
       currentPassword: currentPassword,
@@ -8701,7 +8701,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var createBudget = function createBudget(budget) {
   (0, _axios.default)({
     method: "POST",
-    url: "http://localhost:4400/api/budgets",
+    url: "/api/budgets",
     data: {
       budget: budget
     }
@@ -8738,10 +8738,9 @@ var filterObj = function filterObj(obj) {
 
 var createExpense = function createExpense(data) {
   var filteredData = filterObj(data, "title", "allocated");
-  console.log(filteredData);
   (0, _axios.default)({
     method: "POST",
-    url: "http://localhost:4400/api/budgets/".concat(data.budgetId, "/expenditures"),
+    url: "/api/budgets/".concat(data.budgetId, "/expenditures"),
     data: filteredData
   }).then(function (res) {
     //console.log(res);
@@ -8765,10 +8764,9 @@ exports.createExpense = createExpense;
 
 var updateExpense = function updateExpense(data) {
   var filteredData = filterObj(data, "title", "spent", "allocated", "_id");
-  console.log(filteredData);
   (0, _axios.default)({
     method: "PATCH",
-    url: "http://localhost:4400/api/budgets/".concat(data.budgetId, "/expenditures"),
+    url: "/api/budgets/".concat(data.budgetId, "/expenditures"),
     data: filteredData
   }).then(function (res) {
     if (res.data.status === "success") {
@@ -8793,11 +8791,9 @@ var deleteExpense = function deleteExpense(data) {
   var filteredData = filterObj(data, "_id");
   (0, _axios.default)({
     method: "DELETE",
-    url: "http://localhost:4400/api/budgets/".concat(data.budgetId, "/expenditures"),
+    url: "/api/budgets/".concat(data.budgetId, "/expenditures"),
     data: filteredData
   }).then(function (res) {
-    console.log(res);
-
     if (res.status === 204) {
       (0, _alerts.showUpdateAlert)("success", "Expense deleted successfully!!", "pop");
       setTimeout(window.location.reload(true), 500);
@@ -8821,10 +8817,9 @@ exports.deleteExpense = deleteExpense;
 var deleteBudget = function deleteBudget(budgetId) {
   (0, _axios.default)({
     method: "DELETE",
-    url: "http://localhost:4400/api/budgets/".concat(budgetId)
+    url: "/api/budgets/".concat(budgetId)
   }).then(function (res) {
-    console.log(res);
-
+    // console.log(res);
     if (res.status === 204) {
       (0, _alerts.showUpdateAlert)("success", "Budget deleted successfully!!", "pop");
       setTimeout(window.location.replace("/userProfile"), 500);

@@ -4,7 +4,7 @@ import { showUpdateAlert, showAlert } from "./alerts";
 export const createBudget = (budget) => {
   axios({
     method: "POST",
-    url: `http://localhost:4400/api/budgets`,
+    url: `/api/budgets`,
     data: { budget },
   })
     .then((res) => {
@@ -37,9 +37,9 @@ const filterObj = function (obj, ...allowedFields) {
 
 export const createExpense = (data) => {
   const filteredData = filterObj(data, "title", "allocated");
- 
+  axios({
     method: "POST",
-    url: `http://localhost:4400/api/budgets/${data.budgetId}/expenditures`,
+    url: `/api/budgets/${data.budgetId}/expenditures`,
     data: filteredData,
   })
     .then((res) => {
@@ -63,10 +63,10 @@ export const createExpense = (data) => {
 
 export const updateExpense = (data) => {
   const filteredData = filterObj(data, "title", "spent", "allocated", "_id");
-  
+
   axios({
     method: "PATCH",
-    url: `http://localhost:4400/api/budgets/${data.budgetId}/expenditures`,
+    url: `/api/budgets/${data.budgetId}/expenditures`,
     data: filteredData,
   })
     .then((res) => {
@@ -91,7 +91,7 @@ export const deleteExpense = (data) => {
   const filteredData = filterObj(data, "_id");
   axios({
     method: "DELETE",
-    url: `http://localhost:4400/api/budgets/${data.budgetId}/expenditures`,
+    url: `/api/budgets/${data.budgetId}/expenditures`,
     data: filteredData,
   })
     .then((res) => {
@@ -116,10 +116,10 @@ export const deleteExpense = (data) => {
 export const deleteBudget = (budgetId) => {
   axios({
     method: "DELETE",
-    url: `http://localhost:4400/api/budgets/${budgetId}`,
+    url: `/api/budgets/${budgetId}`,
   })
     .then((res) => {
-     // console.log(res);
+      // console.log(res);
       if (res.status === 204) {
         showUpdateAlert("success", "Budget deleted successfully!!", "pop");
         setTimeout(window.location.replace("/userProfile"), 500);

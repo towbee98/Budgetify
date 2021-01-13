@@ -5,7 +5,7 @@ export const updateData = (firstName, lastName, username, email) => {
   //try {
   axios({
     method: "PATCH",
-    url: `http://localhost:4400/api/users/updateMe`,
+    url: `/api/users/updateMe`,
     data: {
       firstName,
       lastName,
@@ -36,7 +36,7 @@ export const updatePasswordData = (
 ) => {
   axios({
     method: "PATCH",
-    url: `http://localhost:4400/api/users/updatePassword`,
+    url: `/api/users/updatePassword`,
     data: {
       password,
       currentPassword,

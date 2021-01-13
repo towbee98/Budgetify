@@ -25,7 +25,7 @@ export const login = async (user, password) => {
       username: user,
       password: password,
     };
-    const url = `http://localhost:4400/api/users/login`;
+    const url = `/api/users/login`;
     // $.ajax({
     //   type: "POST",
     //   url: url,
@@ -45,7 +45,7 @@ export const logOut = async () => {
   try {
     const res = await axios({
       method: "get",
-      url: `http://localhost:4400/api/users/logOut`,
+      url: `/api/users/logOut`,
     });
 
     if (res.data.status === "success") {

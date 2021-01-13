@@ -23,7 +23,7 @@ signUpBtn.addEventListener("click", function () {
       fullName: fullName,
       email: email,
     };
-    const url = "http://localhost:3000/api/user"; //this is the api link for registeration
+    const url = "/api/user"; //this is the api link for registeration
     $.ajax({
       type: "POST",
       url: url,
