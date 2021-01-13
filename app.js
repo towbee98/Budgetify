@@ -7,6 +7,7 @@ const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const CookieParser = require("cookie-parser");
+const compression = require("compression");
 
 const AppError = require("./utils/appErrors");
 const globalErrorhandler = require("./controllers/errorController");
