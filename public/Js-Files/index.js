@@ -1,5 +1,6 @@
 import "@babel/polyfill";
 import { login, logOut } from "./login-page";
+import { signUp } from "./Sign-Up-Page";
 import { updateData, updatePasswordData } from "./updateSettings";
 import {
   createBudget,
@@ -246,10 +247,49 @@ if (create_Budget_Btn) {
   });
 }
 
+//This is the sign up page
+if (document.querySelector(".Sign-Up")) {
+  const signUpBtn = document.forms[0][6];
+  const signUpMessage = document.querySelector(".sign-up-message");
+  const loginLink = document.querySelector(".login-link");
+  const loader = document.querySelector(".loader");
+  signUpBtn.addEventListener("click", async () => {
+    const firstName = document.querySelector("#firstname").value;
+    const lastName = document.querySelector("#lastname").value;
+    const username = document.querySelector("#username").value;
+    const email = document.querySelector("#email").value;
+    const password = document.querySelector("#password").value;
+    const passwordConfirm = document.querySelector("#passwordConfirm").value;
+    console.log(
+      firstName,
+      lastName,
+      username,
+      email,
+      password,
+      passwordConfirm
+    );
+    event.preventDefault();
+    await signUp(
+      firstName,
+      lastName,
+      username,
+      email,
+      password,
+      passwordConfirm
+    );
+    firstName = "";
+    lastName = "";
+    username = "";
+    email = "";
+    password = "";
+    passwordConfirm = "";
+  });
+}
+//Thid is for the login page
 if (document.querySelector(".form")) {
   const submitBtn = document.forms[0][2];
-  const rememberMeBtn = document.forms[0][3];
-  const forgotPassword = document.forms[0][4];
+  //const rememberMeBtn = document.forms[0][3];
+  const forgotPassword = document.forms[0][3];
   const loginMessage = document.querySelector(".login-message");
   submitBtn.addEventListener("click", function () {
     event.preventDefault();

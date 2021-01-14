@@ -65,6 +65,27 @@ header {
 .main-nav span {
   margin-top: 70px;
 }
+.alert {
+  position: relative;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 9999;
+  color: #ffff;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+
+  border-radius: 10px;
+}
+.alert--success {
+  background-color: #20bf6b;
+}
+.alert--error {
+  background-color: #eb4d4b;
+}
 a {
   text-decoration: none;
   color: #c2c1ba;
@@ -121,7 +142,8 @@ section {
 #password,
 #email,
 #firstname,
-#lastname {
+#lastname,
+#passwordConfirm {
   padding: 10px;
   background-color: transparent;
   color: black;

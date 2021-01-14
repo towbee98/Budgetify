@@ -15,7 +15,7 @@ module.exports = class Email {
       (this.firstName = user.firstName),
       (this.lastName = user.lastName),
       (this.url = url),
-      (this.from = `tobi oladele <tobiemma200@protonmail.com>`);
+      (this.from = `tobi oladele <Budgetify-WebApp@outlook.com>`);
   }
 
   createNewTransport() {
