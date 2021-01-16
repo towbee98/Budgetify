@@ -70,7 +70,7 @@ exports.aboutUs = (req, res) => {
     .status(200)
     .header(
       "Content-Security-Policy",
-      "default-src  ws://localhost:51741/ 'self' ;"
+      "default-src 'self' ;connect-src ws://localhost:51741/ *"
     )
     .render("About", {
       title: "About Us",
@@ -79,10 +79,10 @@ exports.aboutUs = (req, res) => {
 exports.ContactPage = (req, res) => {
   res
     .status(200)
-    // .header(
-    //   "Content-Security-Policy",
-    //   "default-src wss://localhost:54318/ 'self' ;"
-    // )
+    .header(
+      "Content-Security-Policy",
+      "default-src  'self' ;connect-src ws://localhost:65068/ * "
+    )
     .render("ContactPage", {
       title: "Get in Touch",
     });

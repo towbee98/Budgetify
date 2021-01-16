@@ -3,12 +3,6 @@ const nodemailer = require("nodemailer");
 const pug = require("pug");
 const htmlToText = require("html-to-text");
 
-// const auth = {
-//   auth: {
-//     api_key: "705e774d05fc863e40b3fa90c42027cf-07e45e2a-8670be1b",
-//     domain: "sandbox35eff3e71d84431ca8d35db2cf651f2c.mailgun.org",
-//   },
-// };
 module.exports = class Email {
   constructor(user, url) {
     (this.to = user.email),

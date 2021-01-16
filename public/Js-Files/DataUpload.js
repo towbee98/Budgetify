@@ -9,7 +9,7 @@ export const createBudget = (budget) => {
   })
     .then((res) => {
       if (res.data.status === "Success") {
-        showAlert("success", "Budget created successfully!!");
+        showAlert("success", "Budget created successfully!!", "Create-Budget");
       }
     })
     .catch((err) => {
@@ -45,7 +45,11 @@ export const createExpense = (data) => {
     .then((res) => {
       //console.log(res);
       if (res.data.status === "Success") {
-        showUpdateAlert("success", "Expense Created successfully!!");
+        showAlert(
+          "success",
+          "Expense Created successfully!!,",
+          "add-expenditure"
+        );
         setTimeout(window.location.reload(true), 500);
       }
     })

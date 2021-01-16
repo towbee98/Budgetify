@@ -7,13 +7,13 @@ header
         span etify
 nav.main-nav
     span
-        a(href='#') Home
+        a(href='/') Home
     span
         if user
             a LogOut
         else
             a(href='/SignIn') Login
-    if budget
+    if budget || user
         span
             a(href='/userProfile') User Profile
          

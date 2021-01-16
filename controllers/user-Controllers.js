@@ -3,6 +3,7 @@ const catchAsync = require("./../utils/catchAsync");
 const express = require("express");
 const AppError = require("./../utils/appErrors");
 const factory = require("./factoryHandler");
+const receiveEmail = require("./../utils/receiveEmail");
 //function to extract the required fields for querying the db
 const filterObj = function (obj, ...allowedFields) {
   const newObj = {};
@@ -91,3 +92,19 @@ exports.deleteUser = factory.deleteOne(User);
 //     message: "The routes is not yet defined",
 //   });
 // };
+exports.contactUs = catchAsync(async (req, res, next) => {
+  console.log(req.body);
+  const params = {
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    email: req.body.email,
+    Phone: req.body.Phone,
+    message: req.body.message,
+  };
+
+  await new receiveEmail(params).sendContactMsg();
+  res.status(200).json({
+    status: "Success",
+    message: "data delivered",
+  });
+});

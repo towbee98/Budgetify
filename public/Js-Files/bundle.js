@@ -8440,10 +8440,17 @@ var hideAlert = function hideAlert() {
 
 exports.hideAlert = hideAlert;
 
-var showAlert = function showAlert(type, msg) {
+var showAlert = function showAlert(type, msg, attribute) {
   hideAlert();
   var markup = "<div class=\"alert alert--".concat(type, "\">").concat(msg, "</div>");
-  document.querySelector("section").insertAdjacentHTML("beforeend", markup);
+  console.log(attribute);
+
+  if (attribute) {
+    document.querySelector(".".concat(attribute)).insertAdjacentHTML("afterend", markup);
+  } else {
+    document.querySelector("section").insertAdjacentHTML("beforeend", markup);
+  }
+
   window.setTimeout(hideAlert, 5000);
 };
 
@@ -8869,7 +8876,7 @@ var createBudget = function createBudget(budget) {
     }
   }).then(function (res) {
     if (res.data.status === "Success") {
-      (0, _alerts.showAlert)("success", "Budget created successfully!!");
+      (0, _alerts.showAlert)("success", "Budget created successfully!!", "Create-Budget");
     }
   }).catch(function (err) {
     if (err.response) {
@@ -8907,7 +8914,7 @@ var createExpense = function createExpense(data) {
   }).then(function (res) {
     //console.log(res);
     if (res.data.status === "Success") {
-      (0, _alerts.showUpdateAlert)("success", "Expense Created successfully!!");
+      (0, _alerts.showAlert)("success", "Expense Created successfully!!,", "add-expenditure");
       setTimeout(window.location.reload(true), 500);
     }
   }).catch(function (err) {
@@ -31419,19 +31426,46 @@ if (create_Budget_Btn) {
       }
     }, _callee5);
   })));
+} //This is for the Contact Us Page
+
+
+if (document.querySelector(".Contact-Us")) {
+  var submitBtn = document.forms[0][5];
+  submitBtn.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+    var firstName, lastname, email, phone, message;
+    return regeneratorRuntime.wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            event.preventDefault();
+            firstName = document.querySelector("#firstname").value;
+            lastname = document.querySelector("#lastname").value;
+            email = document.querySelector("#email").value;
+            phone = document.querySelector("#phone-number").value;
+            message = document.querySelector("#message").value;
+            _context6.next = 8;
+            return (0, _DataUpload.submitContactMsg)(firstName, lastname, email, phone, message);
+
+          case 8:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6);
+  })));
 } //This is the sign up page
 
 
 if (document.querySelector(".Sign-Up")) {
-  var signUpBtn = document.forms[0][6];
-  var signUpMessage = document.querySelector(".sign-up-message");
-  var loginLink = document.querySelector(".login-link");
-  var loader = document.querySelector(".loader");
-  signUpBtn.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+  var signUpBtn = document.forms[0][6]; // const signUpMessage = document.querySelector(".sign-up-message");
+  // const loginLink = document.querySelector(".login-link");
+  // const loader = document.querySelector(".loader");
+
+  signUpBtn.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
     var firstName, lastName, username, email, password, passwordConfirm;
-    return regeneratorRuntime.wrap(function _callee6$(_context6) {
+    return regeneratorRuntime.wrap(function _callee7$(_context7) {
       while (1) {
-        switch (_context6.prev = _context6.next) {
+        switch (_context7.prev = _context7.next) {
           case 0:
             firstName = document.querySelector("#firstname").value;
             lastName = document.querySelector("#lastname").value;
@@ -31439,12 +31473,11 @@ if (document.querySelector(".Sign-Up")) {
             email = document.querySelector("#email").value;
             password = document.querySelector("#password").value;
             passwordConfirm = document.querySelector("#passwordConfirm").value;
-            console.log(firstName, lastName, username, email, password, passwordConfirm);
             event.preventDefault();
-            _context6.next = 10;
+            _context7.next = 9;
             return (0, _SignUpPage.signUp)(firstName, lastName, username, email, password, passwordConfirm);
 
-          case 10:
+          case 9:
             firstName = (_readOnlyError("firstName"), "");
             lastName = (_readOnlyError("lastName"), "");
             username = (_readOnlyError("username"), "");
@@ -31452,22 +31485,23 @@ if (document.querySelector(".Sign-Up")) {
             password = (_readOnlyError("password"), "");
             passwordConfirm = (_readOnlyError("passwordConfirm"), "");
 
-          case 16:
+          case 15:
           case "end":
-            return _context6.stop();
+            return _context7.stop();
         }
       }
-    }, _callee6);
+    }, _callee7);
   })));
-} //Thid is for the login page
+} //This is for the login page
 
 
 if (document.querySelector(".form")) {
-  var submitBtn = document.forms[0][2]; //const rememberMeBtn = document.forms[0][3];
+  var _submitBtn = document.forms[0][2]; //const rememberMeBtn = document.forms[0][3];
 
   var forgotPassword = document.forms[0][3];
   var loginMessage = document.querySelector(".login-message");
-  submitBtn.addEventListener("click", function () {
+
+  _submitBtn.addEventListener("click", function () {
     event.preventDefault();
     var enteredUsername = document.forms[0][0];
     var enteredpassword = document.forms[0][1]; //this controls what happens when the sign up button is clicked
@@ -31476,7 +31510,8 @@ if (document.querySelector(".form")) {
     enteredUsername.value = "";
     enteredpassword.value = "";
   });
-}
+} //This is for the user Profile Page
+
 
 if (document.querySelector(".user-account")) {
   document.querySelector("#save").addEventListener("click", function () {
@@ -31486,15 +31521,16 @@ if (document.querySelector(".user-account")) {
     var email = document.querySelector("#e-mail").value;
     (0, _updateSettings.updateData)(firstName, lastName, username, email);
   });
-}
+} //This is for the user Profile Page where we update the password
+
 
 if (document.querySelector(".user-password")) {
   //console.log(document.querySelector("#update"));
-  document.querySelector("#update").addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+  document.querySelector("#update").addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
     var password, currentPassword, passwordConfirm;
-    return regeneratorRuntime.wrap(function _callee7$(_context7) {
+    return regeneratorRuntime.wrap(function _callee8$(_context8) {
       while (1) {
-        switch (_context7.prev = _context7.next) {
+        switch (_context8.prev = _context8.next) {
           case 0:
             event.preventDefault();
             password = document.querySelector("#password").value;
@@ -31504,10 +31540,10 @@ if (document.querySelector(".user-password")) {
 
           case 5:
           case "end":
-            return _context7.stop();
+            return _context8.stop();
         }
       }
-    }, _callee7);
+    }, _callee8);
   })));
 }
 
@@ -31527,31 +31563,31 @@ toggleBtn.addEventListener("click", function () {
 
   click++;
 });
-mainNav.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+mainNav.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
   var i;
-  return regeneratorRuntime.wrap(function _callee8$(_context8) {
+  return regeneratorRuntime.wrap(function _callee9$(_context9) {
     while (1) {
-      switch (_context8.prev = _context8.next) {
+      switch (_context9.prev = _context9.next) {
         case 0:
           i = 0;
 
         case 1:
           if (!(i < mainNav.children.length)) {
-            _context8.next = 15;
+            _context9.next = 15;
             break;
           }
 
           if (!(event.target.textContent == mainNav.children[i].textContent)) {
-            _context8.next = 12;
+            _context9.next = 12;
             break;
           }
 
           if (!(event.target.textContent === "LogOut")) {
-            _context8.next = 6;
+            _context9.next = 6;
             break;
           }
 
-          _context8.next = 6;
+          _context9.next = 6;
           return (0, _loginPage.logOut)();
 
         case 6:
@@ -31560,19 +31596,19 @@ mainNav.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/r
           toggleBar1.style.opacity = "1";
           toggleBar2.style.transform = "rotateZ(0) translateX(0)";
           toggleBar3.style.transform = "rotateZ(0) translateX(0) translateY(0)";
-          return _context8.abrupt("break", 15);
+          return _context9.abrupt("break", 15);
 
         case 12:
           i++;
-          _context8.next = 1;
+          _context9.next = 1;
           break;
 
         case 15:
         case "end":
-          return _context8.stop();
+          return _context9.stop();
       }
     }
-  }, _callee8);
+  }, _callee9);
 })));
 },{"core-js/modules/es6.array.copy-within.js":"../../node_modules/core-js/modules/es6.array.copy-within.js","core-js/modules/es6.array.fill.js":"../../node_modules/core-js/modules/es6.array.fill.js","core-js/modules/es6.array.find.js":"../../node_modules/core-js/modules/es6.array.find.js","core-js/modules/es6.array.find-index.js":"../../node_modules/core-js/modules/es6.array.find-index.js","core-js/modules/es7.array.flat-map.js":"../../node_modules/core-js/modules/es7.array.flat-map.js","core-js/modules/es6.array.from.js":"../../node_modules/core-js/modules/es6.array.from.js","core-js/modules/es7.array.includes.js":"../../node_modules/core-js/modules/es7.array.includes.js","core-js/modules/es6.array.iterator.js":"../../node_modules/core-js/modules/es6.array.iterator.js","core-js/modules/es6.array.of.js":"../../node_modules/core-js/modules/es6.array.of.js","core-js/modules/es6.array.sort.js":"../../node_modules/core-js/modules/es6.array.sort.js","core-js/modules/es6.array.species.js":"../../node_modules/core-js/modules/es6.array.species.js","core-js/modules/es6.date.to-primitive.js":"../../node_modules/core-js/modules/es6.date.to-primitive.js","core-js/modules/es6.date.to-string.js":"../../node_modules/core-js/modules/es6.date.to-string.js","core-js/modules/es6.function.has-instance.js":"../../node_modules/core-js/modules/es6.function.has-instance.js","core-js/modules/es6.function.name.js":"../../node_modules/core-js/modules/es6.function.name.js","core-js/modules/es6.map.js":"../../node_modules/core-js/modules/es6.map.js","core-js/modules/es6.math.acosh.js":"../../node_modules/core-js/modules/es6.math.acosh.js","core-js/modules/es6.math.asinh.js":"../../node_modules/core-js/modules/es6.math.asinh.js","core-js/modules/es6.math.atanh.js":"../../node_modules/core-js/modules/es6.math.atanh.js","core-js/modules/es6.math.cbrt.js":"../../node_modules/core-js/modules/es6.math.cbrt.js","core-js/modules/es6.math.clz32.js":"../../node_modules/core-js/modules/es6.math.clz32.js","core-js/modules/es6.math.cosh.js":"../../node_modules/core-js/modules/es6.math.cosh.js","core-js/modules/es6.math.expm1.js":"../../node_modules/core-js/modules/es6.math.expm1.js","core-js/modules/es6.math.fround.js":"../../node_modules/core-js/modules/es6.math.fround.js","core-js/modules/es6.math.hypot.js":"../../node_modules/core-js/modules/es6.math.hypot.js","core-js/modules/es6.math.imul.js":"../../node_modules/core-js/modules/es6.math.imul.js","core-js/modules/es6.math.log1p.js":"../../node_modules/core-js/modules/es6.math.log1p.js","core-js/modules/es6.math.log10.js":"../../node_modules/core-js/modules/es6.math.log10.js","core-js/modules/es6.math.log2.js":"../../node_modules/core-js/modules/es6.math.log2.js","core-js/modules/es6.math.sign.js":"../../node_modules/core-js/modules/es6.math.sign.js","core-js/modules/es6.math.sinh.js":"../../node_modules/core-js/modules/es6.math.sinh.js","core-js/modules/es6.math.tanh.js":"../../node_modules/core-js/modules/es6.math.tanh.js","core-js/modules/es6.math.trunc.js":"../../node_modules/core-js/modules/es6.math.trunc.js","core-js/modules/es6.number.constructor.js":"../../node_modules/core-js/modules/es6.number.constructor.js","core-js/modules/es6.number.epsilon.js":"../../node_modules/core-js/modules/es6.number.epsilon.js","core-js/modules/es6.number.is-finite.js":"../../node_modules/core-js/modules/es6.number.is-finite.js","core-js/modules/es6.number.is-integer.js":"../../node_modules/core-js/modules/es6.number.is-integer.js","core-js/modules/es6.number.is-nan.js":"../../node_modules/core-js/modules/es6.number.is-nan.js","core-js/modules/es6.number.is-safe-integer.js":"../../node_modules/core-js/modules/es6.number.is-safe-integer.js","core-js/modules/es6.number.max-safe-integer.js":"../../node_modules/core-js/modules/es6.number.max-safe-integer.js","core-js/modules/es6.number.min-safe-integer.js":"../../node_modules/core-js/modules/es6.number.min-safe-integer.js","core-js/modules/es6.number.parse-float.js":"../../node_modules/core-js/modules/es6.number.parse-float.js","core-js/modules/es6.number.parse-int.js":"../../node_modules/core-js/modules/es6.number.parse-int.js","core-js/modules/es6.object.assign.js":"../../node_modules/core-js/modules/es6.object.assign.js","core-js/modules/es7.object.define-getter.js":"../../node_modules/core-js/modules/es7.object.define-getter.js","core-js/modules/es7.object.define-setter.js":"../../node_modules/core-js/modules/es7.object.define-setter.js","core-js/modules/es7.object.entries.js":"../../node_modules/core-js/modules/es7.object.entries.js","core-js/modules/es6.object.freeze.js":"../../node_modules/core-js/modules/es6.object.freeze.js","core-js/modules/es6.object.get-own-property-descriptor.js":"../../node_modules/core-js/modules/es6.object.get-own-property-descriptor.js","core-js/modules/es7.object.get-own-property-descriptors.js":"../../node_modules/core-js/modules/es7.object.get-own-property-descriptors.js","core-js/modules/es6.object.get-own-property-names.js":"../../node_modules/core-js/modules/es6.object.get-own-property-names.js","core-js/modules/es6.object.get-prototype-of.js":"../../node_modules/core-js/modules/es6.object.get-prototype-of.js","core-js/modules/es7.object.lookup-getter.js":"../../node_modules/core-js/modules/es7.object.lookup-getter.js","core-js/modules/es7.object.lookup-setter.js":"../../node_modules/core-js/modules/es7.object.lookup-setter.js","core-js/modules/es6.object.prevent-extensions.js":"../../node_modules/core-js/modules/es6.object.prevent-extensions.js","core-js/modules/es6.object.to-string.js":"../../node_modules/core-js/modules/es6.object.to-string.js","core-js/modules/es6.object.is.js":"../../node_modules/core-js/modules/es6.object.is.js","core-js/modules/es6.object.is-frozen.js":"../../node_modules/core-js/modules/es6.object.is-frozen.js","core-js/modules/es6.object.is-sealed.js":"../../node_modules/core-js/modules/es6.object.is-sealed.js","core-js/modules/es6.object.is-extensible.js":"../../node_modules/core-js/modules/es6.object.is-extensible.js","core-js/modules/es6.object.keys.js":"../../node_modules/core-js/modules/es6.object.keys.js","core-js/modules/es6.object.seal.js":"../../node_modules/core-js/modules/es6.object.seal.js","core-js/modules/es6.object.set-prototype-of.js":"../../node_modules/core-js/modules/es6.object.set-prototype-of.js","core-js/modules/es7.object.values.js":"../../node_modules/core-js/modules/es7.object.values.js","core-js/modules/es6.promise.js":"../../node_modules/core-js/modules/es6.promise.js","core-js/modules/es7.promise.finally.js":"../../node_modules/core-js/modules/es7.promise.finally.js","core-js/modules/es6.reflect.apply.js":"../../node_modules/core-js/modules/es6.reflect.apply.js","core-js/modules/es6.reflect.construct.js":"../../node_modules/core-js/modules/es6.reflect.construct.js","core-js/modules/es6.reflect.define-property.js":"../../node_modules/core-js/modules/es6.reflect.define-property.js","core-js/modules/es6.reflect.delete-property.js":"../../node_modules/core-js/modules/es6.reflect.delete-property.js","core-js/modules/es6.reflect.get.js":"../../node_modules/core-js/modules/es6.reflect.get.js","core-js/modules/es6.reflect.get-own-property-descriptor.js":"../../node_modules/core-js/modules/es6.reflect.get-own-property-descriptor.js","core-js/modules/es6.reflect.get-prototype-of.js":"../../node_modules/core-js/modules/es6.reflect.get-prototype-of.js","core-js/modules/es6.reflect.has.js":"../../node_modules/core-js/modules/es6.reflect.has.js","core-js/modules/es6.reflect.is-extensible.js":"../../node_modules/core-js/modules/es6.reflect.is-extensible.js","core-js/modules/es6.reflect.own-keys.js":"../../node_modules/core-js/modules/es6.reflect.own-keys.js","core-js/modules/es6.reflect.prevent-extensions.js":"../../node_modules/core-js/modules/es6.reflect.prevent-extensions.js","core-js/modules/es6.reflect.set.js":"../../node_modules/core-js/modules/es6.reflect.set.js","core-js/modules/es6.reflect.set-prototype-of.js":"../../node_modules/core-js/modules/es6.reflect.set-prototype-of.js","core-js/modules/es6.regexp.constructor.js":"../../node_modules/core-js/modules/es6.regexp.constructor.js","core-js/modules/es6.regexp.flags.js":"../../node_modules/core-js/modules/es6.regexp.flags.js","core-js/modules/es6.regexp.match.js":"../../node_modules/core-js/modules/es6.regexp.match.js","core-js/modules/es6.regexp.replace.js":"../../node_modules/core-js/modules/es6.regexp.replace.js","core-js/modules/es6.regexp.split.js":"../../node_modules/core-js/modules/es6.regexp.split.js","core-js/modules/es6.regexp.search.js":"../../node_modules/core-js/modules/es6.regexp.search.js","core-js/modules/es6.regexp.to-string.js":"../../node_modules/core-js/modules/es6.regexp.to-string.js","core-js/modules/es6.set.js":"../../node_modules/core-js/modules/es6.set.js","core-js/modules/es6.symbol.js":"../../node_modules/core-js/modules/es6.symbol.js","core-js/modules/es7.symbol.async-iterator.js":"../../node_modules/core-js/modules/es7.symbol.async-iterator.js","core-js/modules/es6.string.anchor.js":"../../node_modules/core-js/modules/es6.string.anchor.js","core-js/modules/es6.string.big.js":"../../node_modules/core-js/modules/es6.string.big.js","core-js/modules/es6.string.blink.js":"../../node_modules/core-js/modules/es6.string.blink.js","core-js/modules/es6.string.bold.js":"../../node_modules/core-js/modules/es6.string.bold.js","core-js/modules/es6.string.code-point-at.js":"../../node_modules/core-js/modules/es6.string.code-point-at.js","core-js/modules/es6.string.ends-with.js":"../../node_modules/core-js/modules/es6.string.ends-with.js","core-js/modules/es6.string.fixed.js":"../../node_modules/core-js/modules/es6.string.fixed.js","core-js/modules/es6.string.fontcolor.js":"../../node_modules/core-js/modules/es6.string.fontcolor.js","core-js/modules/es6.string.fontsize.js":"../../node_modules/core-js/modules/es6.string.fontsize.js","core-js/modules/es6.string.from-code-point.js":"../../node_modules/core-js/modules/es6.string.from-code-point.js","core-js/modules/es6.string.includes.js":"../../node_modules/core-js/modules/es6.string.includes.js","core-js/modules/es6.string.italics.js":"../../node_modules/core-js/modules/es6.string.italics.js","core-js/modules/es6.string.iterator.js":"../../node_modules/core-js/modules/es6.string.iterator.js","core-js/modules/es6.string.link.js":"../../node_modules/core-js/modules/es6.string.link.js","core-js/modules/es7.string.pad-start.js":"../../node_modules/core-js/modules/es7.string.pad-start.js","core-js/modules/es7.string.pad-end.js":"../../node_modules/core-js/modules/es7.string.pad-end.js","core-js/modules/es6.string.raw.js":"../../node_modules/core-js/modules/es6.string.raw.js","core-js/modules/es6.string.repeat.js":"../../node_modules/core-js/modules/es6.string.repeat.js","core-js/modules/es6.string.small.js":"../../node_modules/core-js/modules/es6.string.small.js","core-js/modules/es6.string.starts-with.js":"../../node_modules/core-js/modules/es6.string.starts-with.js","core-js/modules/es6.string.strike.js":"../../node_modules/core-js/modules/es6.string.strike.js","core-js/modules/es6.string.sub.js":"../../node_modules/core-js/modules/es6.string.sub.js","core-js/modules/es6.string.sup.js":"../../node_modules/core-js/modules/es6.string.sup.js","core-js/modules/es7.string.trim-left.js":"../../node_modules/core-js/modules/es7.string.trim-left.js","core-js/modules/es7.string.trim-right.js":"../../node_modules/core-js/modules/es7.string.trim-right.js","core-js/modules/es6.typed.array-buffer.js":"../../node_modules/core-js/modules/es6.typed.array-buffer.js","core-js/modules/es6.typed.data-view.js":"../../node_modules/core-js/modules/es6.typed.data-view.js","core-js/modules/es6.typed.int8-array.js":"../../node_modules/core-js/modules/es6.typed.int8-array.js","core-js/modules/es6.typed.uint8-array.js":"../../node_modules/core-js/modules/es6.typed.uint8-array.js","core-js/modules/es6.typed.uint8-clamped-array.js":"../../node_modules/core-js/modules/es6.typed.uint8-clamped-array.js","core-js/modules/es6.typed.int16-array.js":"../../node_modules/core-js/modules/es6.typed.int16-array.js","core-js/modules/es6.typed.uint16-array.js":"../../node_modules/core-js/modules/es6.typed.uint16-array.js","core-js/modules/es6.typed.int32-array.js":"../../node_modules/core-js/modules/es6.typed.int32-array.js","core-js/modules/es6.typed.uint32-array.js":"../../node_modules/core-js/modules/es6.typed.uint32-array.js","core-js/modules/es6.typed.float32-array.js":"../../node_modules/core-js/modules/es6.typed.float32-array.js","core-js/modules/es6.typed.float64-array.js":"../../node_modules/core-js/modules/es6.typed.float64-array.js","core-js/modules/es6.weak-map.js":"../../node_modules/core-js/modules/es6.weak-map.js","core-js/modules/es6.weak-set.js":"../../node_modules/core-js/modules/es6.weak-set.js","core-js/modules/web.timers.js":"../../node_modules/core-js/modules/web.timers.js","core-js/modules/web.immediate.js":"../../node_modules/core-js/modules/web.immediate.js","core-js/modules/web.dom.iterable.js":"../../node_modules/core-js/modules/web.dom.iterable.js","regenerator-runtime/runtime.js":"../../node_modules/regenerator-runtime/runtime.js","./login-page":"login-page.js","./Sign-Up-Page":"Sign-Up-Page.js","./updateSettings":"updateSettings.js","./DataUpload":"DataUpload.js","chart.js":"../../node_modules/chart.js/dist/Chart.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -31602,7 +31638,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63311" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63219" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

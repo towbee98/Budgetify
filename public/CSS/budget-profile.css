@@ -29,6 +29,9 @@ header {
   display: block;
   margin-right: 0;
 }
+.toggle-btn:hover {
+  cursor: pointer;
+}
 .box {
   width: 23px;
   margin-bottom: 4px;
@@ -72,6 +75,9 @@ header {
 }
 a {
   text-decoration: none;
+}
+a:hover {
+  cursor: pointer;
 }
 section {
   display: grid;

@@ -8,6 +8,7 @@ import {
   updateExpense,
   deleteExpense,
   deleteBudget,
+  submitContactMsg,
 } from "./DataUpload";
 import Chart from "chart.js";
 
@@ -247,12 +248,25 @@ if (create_Budget_Btn) {
   });
 }
 
+//This is for the Contact Us Page
+if (document.querySelector(".Contact-Us")) {
+  const submitBtn = document.forms[0][5];
+  submitBtn.addEventListener("click", async () => {
+    event.preventDefault();
+    const firstName = document.querySelector("#firstname").value;
+    const lastname = document.querySelector("#lastname").value;
+    const email = document.querySelector("#email").value;
+    const phone = document.querySelector("#phone-number").value;
+    const message = document.querySelector("#message").value;
+    await submitContactMsg(firstName, lastname, email, phone, message);
+  });
+}
 //This is the sign up page
 if (document.querySelector(".Sign-Up")) {
   const signUpBtn = document.forms[0][6];
-  const signUpMessage = document.querySelector(".sign-up-message");
-  const loginLink = document.querySelector(".login-link");
-  const loader = document.querySelector(".loader");
+  // const signUpMessage = document.querySelector(".sign-up-message");
+  // const loginLink = document.querySelector(".login-link");
+  // const loader = document.querySelector(".loader");
   signUpBtn.addEventListener("click", async () => {
     const firstName = document.querySelector("#firstname").value;
     const lastName = document.querySelector("#lastname").value;
@@ -260,14 +274,6 @@ if (document.querySelector(".Sign-Up")) {
     const email = document.querySelector("#email").value;
     const password = document.querySelector("#password").value;
     const passwordConfirm = document.querySelector("#passwordConfirm").value;
-    console.log(
-      firstName,
-      lastName,
-      username,
-      email,
-      password,
-      passwordConfirm
-    );
     event.preventDefault();
     await signUp(
       firstName,
@@ -285,7 +291,8 @@ if (document.querySelector(".Sign-Up")) {
     passwordConfirm = "";
   });
 }
-//Thid is for the login page
+
+//This is for the login page
 if (document.querySelector(".form")) {
   const submitBtn = document.forms[0][2];
   //const rememberMeBtn = document.forms[0][3];
@@ -302,6 +309,7 @@ if (document.querySelector(".form")) {
   });
 }
 
+//This is for the user Profile Page
 if (document.querySelector(".user-account")) {
   document.querySelector("#save").addEventListener("click", () => {
     const firstName = document.querySelector("#first-name").value;
@@ -313,6 +321,7 @@ if (document.querySelector(".user-account")) {
   });
 }
 
+//This is for the user Profile Page where we update the password
 if (document.querySelector(".user-password")) {
   //console.log(document.querySelector("#update"));
   document.querySelector("#update").addEventListener("click", async () => {

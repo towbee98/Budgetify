@@ -4,10 +4,17 @@ export const hideAlert = () => {
     el.parentElement.removeChild(el);
   }
 };
-export const showAlert = (type, msg) => {
+export const showAlert = (type, msg, attribute) => {
   hideAlert();
   const markup = `<div class="alert alert--${type}">${msg}</div>`;
-  document.querySelector("section").insertAdjacentHTML("beforeend", markup);
+  console.log(attribute);
+  if (attribute) {
+    document
+      .querySelector(`.${attribute}`)
+      .insertAdjacentHTML("afterend", markup);
+  } else {
+    document.querySelector("section").insertAdjacentHTML("beforeend", markup);
+  }
   window.setTimeout(hideAlert, 5000);
 };
 
