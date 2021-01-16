@@ -8859,7 +8859,7 @@ exports.updatePasswordData = updatePasswordData;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteBudget = exports.deleteExpense = exports.updateExpense = exports.createExpense = exports.createBudget = void 0;
+exports.submitContactMsg = exports.deleteBudget = exports.deleteExpense = exports.updateExpense = exports.createExpense = exports.createBudget = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -9008,6 +9008,40 @@ var deleteBudget = function deleteBudget(budgetId) {
 };
 
 exports.deleteBudget = deleteBudget;
+
+var submitContactMsg = function submitContactMsg(firstName, lastname, email, phone, message) {
+  var params = {
+    firstname: firstName,
+    lastname: lastname,
+    email: email,
+    Phone: phone,
+    message: message
+  };
+  var url = "/api/users/contact";
+  (0, _axios.default)({
+    method: "POST",
+    url: url,
+    data: params
+  }).then(function (res) {
+    // console.log(res);
+    if (res.status === 200) {
+      (0, _alerts.showAlert)("success", "Message Sent successfully!!", "submitMsg");
+    }
+  }).catch(function (err) {
+    console.log(err);
+
+    if (err.response) {
+      (0, _alerts.showAlert)("error", err.response.data.message, "submitMsg");
+    } else if (err.request) {
+      console.log(err.request);
+    } else {
+      console.log(err.message);
+    } //setTimeout(window.location.reload(true), 500);
+
+  });
+};
+
+exports.submitContactMsg = submitContactMsg;
 },{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js"}],"../../node_modules/moment/moment.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
@@ -31447,6 +31481,13 @@ if (document.querySelector(".Contact-Us")) {
             return (0, _DataUpload.submitContactMsg)(firstName, lastname, email, phone, message);
 
           case 8:
+            firstName = (_readOnlyError("firstName"), "");
+            lastname = (_readOnlyError("lastname"), "");
+            email = (_readOnlyError("email"), "");
+            phone = (_readOnlyError("phone"), "");
+            message = (_readOnlyError("message"), "");
+
+          case 13:
           case "end":
             return _context6.stop();
         }

@@ -141,3 +141,42 @@ export const deleteBudget = (budgetId) => {
       //setTimeout(window.location.reload(true), 500);
     });
 };
+
+export const submitContactMsg = (
+  firstName,
+  lastname,
+  email,
+  phone,
+  message
+) => {
+  const params = {
+    firstname: firstName,
+    lastname,
+    email,
+    Phone: phone,
+    message,
+  };
+  const url = `/api/users/contact`;
+  axios({
+    method: "POST",
+    url,
+    data: params,
+  })
+    .then((res) => {
+      // console.log(res);
+      if (res.status === 200) {
+        showAlert("success", "Message Sent successfully!!", "submitMsg");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      if (err.response) {
+        showAlert("error", err.response.data.message, "submitMsg");
+      } else if (err.request) {
+        console.log(err.request);
+      } else {
+        console.log(err.message);
+      }
+      //setTimeout(window.location.reload(true), 500);
+    });
+};

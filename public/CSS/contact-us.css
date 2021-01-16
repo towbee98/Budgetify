@@ -152,9 +152,26 @@ input[type="number"] {
   left: -140px;
   position: absolute;
 }
-.msg-sent,
-.msg-not-sent {
-  display: none;
+.alert {
+  position: relative;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 9999;
+  color: #ffff;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+
+  border-radius: 10px;
+}
+.alert--success {
+  background-color: #20bf6b;
+}
+.alert--error {
+  background-color: #eb4d4b;
 }
 @keyframes movedown {
   0% {

@@ -3,7 +3,7 @@ const catchAsync = require("./../utils/catchAsync");
 const express = require("express");
 const AppError = require("./../utils/appErrors");
 const factory = require("./factoryHandler");
-const receiveEmail = require("./../utils/receiveEmail");
+const sendMail = require("./../utils/receiveEmail");
 //function to extract the required fields for querying the db
 const filterObj = function (obj, ...allowedFields) {
   const newObj = {};
@@ -102,7 +102,7 @@ exports.contactUs = catchAsync(async (req, res, next) => {
     message: req.body.message,
   };
 
-  await new receiveEmail(params).sendContactMsg();
+  await sendMail(params);
   res.status(200).json({
     status: "Success",
     message: "data delivered",

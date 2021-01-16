@@ -259,6 +259,11 @@ if (document.querySelector(".Contact-Us")) {
     const phone = document.querySelector("#phone-number").value;
     const message = document.querySelector("#message").value;
     await submitContactMsg(firstName, lastname, email, phone, message);
+    firstName = "";
+    lastname = "";
+    email = "";
+    phone = "";
+    message = "";
   });
 }
 //This is the sign up page
