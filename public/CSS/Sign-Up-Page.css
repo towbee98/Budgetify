@@ -134,8 +134,8 @@ section {
   position: relative;
   border: 2px solid;
   border-color: white;
-  left: -1000px;
-  animation: moveright 5000ms 1s 1 forwards;
+  /* left: -1000px; */
+  /* animation: moveright 5000ms 1s 1 forwards; */
   font-family: Arial, Helvetica, sans-serif;
 }
 #username,
@@ -162,10 +162,10 @@ section {
   box-shadow: none;
 }
 #Sign-up {
-  width: 300px;
+  width: 150px;
   height: 60px;
   margin: 40px 0 10px 0;
-  top: -40px;
+  /* top: -40px; */
   border-radius: 13px;
   position: relative;
   outline: none;
@@ -173,7 +173,7 @@ section {
   background-color: #c2c1ba;
   font-size: medium;
   letter-spacing: 2px;
-  animation: resize 3000ms 1s 1 forwards;
+  /* animation: resize 3000ms 1s 1 forwards; */
 }
 #Sign-up:hover {
   background-color: #9e9c9c;

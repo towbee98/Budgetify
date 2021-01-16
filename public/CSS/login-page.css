@@ -80,12 +80,13 @@ section {
   width: 75%;
   position: absolute;
   background-color: rgba(101, 102, 102, 0.8);
-  top: -1000px;
+  /* top: -1000px; */
+  top: 200px;
   z-index: 3;
   padding: 10px 25px 10px 25px;
   border-radius: 30px;
   text-align: center;
-  animation: movedown 2000ms 1s 1 forwards;
+  /* animation: movedown 2000ms 1s 1 forwards; */
 }
 .user-icon {
   position: absolute;
@@ -111,8 +112,8 @@ form {
   background-color: #f3f0e0;
   border-radius: 13px;
   position: relative;
-  left: -1000px;
-  animation: moveright 5000ms 1s 1 forwards;
+  /* left: -1000px; */
+  /* animation: moveright 5000ms 1s 1 forwards; */
 }
 i {
   padding: 10px;
@@ -142,8 +143,8 @@ i {
   background-color: #c2c1ba;
   font-size: large;
   letter-spacing: 2px;
-  bottom: -10000px;
-  animation: moveUp 5000ms 2s 1 forwards;
+  /* bottom: -10000px; */
+  /* animation: moveUp 5000ms 2s 1 forwards; */
 }
 #login-btn:hover {
   background-color: #cfcfcf;
