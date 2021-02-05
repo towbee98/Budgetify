@@ -252,12 +252,12 @@ if (create_Budget_Btn) {
 if (document.querySelector(".Contact-Us")) {
   const submitBtn = document.forms[0][5];
   submitBtn.addEventListener("click", async () => {
-    event.preventDefault();
-    const firstName = document.querySelector("#firstname").value;
-    const lastname = document.querySelector("#lastname").value;
-    const email = document.querySelector("#email").value;
-    const phone = document.querySelector("#phone-number").value;
-    const message = document.querySelector("#message").value;
+    e.preventDefault();
+    let firstName = document.querySelector("#firstname").value;
+    let lastname = document.querySelector("#lastname").value;
+    let email = document.querySelector("#email").value;
+    let phone = document.querySelector("#phone-number").value;
+    let message = document.querySelector("#message").value;
     await submitContactMsg(firstName, lastname, email, phone, message);
     firstName = "";
     lastname = "";
@@ -273,12 +273,12 @@ if (document.querySelector(".Sign-Up")) {
   // const loginLink = document.querySelector(".login-link");
   // const loader = document.querySelector(".loader");
   signUpBtn.addEventListener("click", async () => {
-    const firstName = document.querySelector("#firstname").textContent;
-    const lastName = document.querySelector("#lastname").textContent;
-    const username = document.querySelector("#username").textContent;
-    const email = document.querySelector("#email").value;
-    const password = document.querySelector("#password").value;
-    const passwordConfirm = document.querySelector("#passwordConfirm").value;
+    let firstName = document.querySelector("#firstname").textContent;
+    let lastName = document.querySelector("#lastname").textContent;
+    let username = document.querySelector("#username").textContent;
+    let email = document.querySelector("#email").value;
+    let password = document.querySelector("#password").value;
+    let passwordConfirm = document.querySelector("#passwordConfirm").value;
     e.preventDefault();
     await signUp(
       firstName,
@@ -304,7 +304,7 @@ if (document.querySelector(".form")) {
   const forgotPassword = document.forms[0][3];
   const loginMessage = document.querySelector(".login-message");
   submitBtn.addEventListener("click", function () {
-    event.preventDefault();
+    e.preventDefault();
     const enteredUsername = document.forms[0][0];
     const enteredpassword = document.forms[0][1];
     //this controls what happens when the sign up button is clicked
