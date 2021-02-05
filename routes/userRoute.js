@@ -20,7 +20,7 @@ userRouter.route("/me").get(userController.getMe);
 userRouter.route("/updateMe").patch(userController.updateMe);
 userRouter.route("/deleteMe").delete(userController.deleteMe);
 
-userRouter.use(authController.restrictUser("admin"));
+//userRouter.use(authController.restrictUser("admin"));
 userRouter.route("/").get(userController.getAllUsers);
 
 userRouter
