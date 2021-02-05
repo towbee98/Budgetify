@@ -31,7 +31,7 @@ const createSendToken = function (res, user, statusCode) {
     data: { user },
   });
 };
-exports.signUp = catchAsync(async (req, res, next) => {
+exports.signUp = catchAsync(async (req, res) => {
   const newUser = await User.create({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -45,12 +45,7 @@ exports.signUp = catchAsync(async (req, res, next) => {
   console.log(url);
   await new Email(newUser, url).sendWelcome();
   createSendToken(res, newUser, 201);
-  // const token = tokenSign(newUser._id);
-  // res.status(201).json({
-  //   status: "Success",
-  //   token: token,
-  //   data: { user: newUser },
-  // });
+  // next();
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -67,11 +62,7 @@ exports.login = catchAsync(async (req, res, next) => {
   }
   //3) If everything is ok ,send token to client
   createSendToken(res, user, 200);
-  // const token = tokenSign(user._id);
-  // res.status(200).json({
-  //   status: "success",
-  //   token: token,
-  // });
+  
 });
 
 exports.logOut = (req, res) => {

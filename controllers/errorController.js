@@ -21,7 +21,8 @@ const SendErrorDev = (err, req, res) => {
 
 const SendErrorProd = (err, req, res) => {
   console.log(err.message);
-  //A) For API
+  console.log(req.originalUrl);
+  //A)For API
   if (req.originalUrl.startsWith("/api")) {
     if (err.isOperational) {
       //Operational Error :Send message to  the client
@@ -85,13 +86,13 @@ const handleJWTExpiredError = () => {
 };
 
 module.exports = (err, req, res, next) => {
-  console.log(err);
+  //console.log(err);
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
 
   if (process.env.NODE_ENV === "production") {
     let error = err;
-    //console.log(error.message);
+    console.log(error.message);
     if (err.name === "CastError") {
       error = handleCastError(err);
     }
