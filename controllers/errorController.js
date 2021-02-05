@@ -36,7 +36,7 @@ const SendErrorProd = (err, req, res) => {
     //2)Send a generic message
     return res.status(500).json({
       status: "fail",
-      message: "Something went wrong!",
+      message: err.message, //"Something went wrong!",
     });
   }
 
@@ -57,7 +57,6 @@ const SendErrorProd = (err, req, res) => {
     msg: "Please try again later",
   });
 };
-
 
 //This handles Invalid values Entered for a particular field queried from the db
 const handleCastError = (err) => {
@@ -84,7 +83,6 @@ const handleJWTError = () => {
 const handleJWTExpiredError = () => {
   return new AppError("Token Expired,Please login again", 401);
 };
-
 
 module.exports = (err, req, res, next) => {
   console.log(err);
