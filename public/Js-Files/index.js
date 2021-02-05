@@ -273,13 +273,13 @@ if (document.querySelector(".Sign-Up")) {
   // const loginLink = document.querySelector(".login-link");
   // const loader = document.querySelector(".loader");
   signUpBtn.addEventListener("click", async () => {
-    const firstName = document.querySelector("#firstname").value;
-    const lastName = document.querySelector("#lastname").value;
-    const username = document.querySelector("#username").value;
+    const firstName = document.querySelector("#firstname").textContent;
+    const lastName = document.querySelector("#lastname").textContent;
+    const username = document.querySelector("#username").textContent;
     const email = document.querySelector("#email").value;
     const password = document.querySelector("#password").value;
     const passwordConfirm = document.querySelector("#passwordConfirm").value;
-    event.preventDefault();
+    e.preventDefault();
     await signUp(
       firstName,
       lastName,

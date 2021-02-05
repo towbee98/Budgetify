@@ -4,10 +4,10 @@ export const hideAlert = () => {
     el.parentElement.removeChild(el);
   }
 };
+
 export const showAlert = (type, msg, attribute) => {
   hideAlert();
   const markup = `<div class="alert alert--${type}">${msg}</div>`;
-  console.log(attribute);
   if (attribute) {
     document
       .querySelector(`.${attribute}`)

@@ -5,7 +5,7 @@ const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appErrors");
 const { promisify } = require("util");
 const Email = require("./../utils/email");
-const { url } = require("inspector");
+//const { url } = require("inspector");
 
 const tokenSign = function (id) {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -42,6 +42,7 @@ exports.signUp = catchAsync(async (req, res, next) => {
     role: req.body.role,
   });
   const url = `${req.protocol}://${req.get("host")}/SignIn`;
+  console.log(url);
   await new Email(newUser, url).sendWelcome();
   createSendToken(res, newUser, 201);
   // const token = tokenSign(newUser._id);
@@ -209,6 +210,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     .createHash("sha256")
     .update(req.params.token)
     .digest("hex");
+
   const user = await User.findOne({
     passwordResetToken: hashedtoken,
     passwordTokenExpiresAt: {
