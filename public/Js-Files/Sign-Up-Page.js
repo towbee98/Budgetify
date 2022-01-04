@@ -13,7 +13,8 @@ const makeApiCall = async (url, data) => {
       window.setTimeout(location.assign("/SignIn"), 5000);
     }
   } catch (err) {
-    console.log(err);
+    console.log(err.response);
+    console.log(err.request);
     showAlert("error", err.response.data.message);
     //console.log(error.response.data);
   }

@@ -139,7 +139,7 @@ if (delete_Budget_CTA) {
 }
 if (delete_Budget_Btn) {
   delete_Budget_Btn.addEventListener("click", async () => {
-    event.preventDefault();
+    e.preventDefault();
     await deleteBudget(budgetId);
     deleteBudgetContainer.style.display = "none";
   });

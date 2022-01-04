@@ -8640,16 +8640,17 @@ var makeApiCall = /*#__PURE__*/function () {
               window.setTimeout(location.assign("/SignIn"), 5000);
             }
 
-            _context.next = 11;
+            _context.next = 12;
             break;
 
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            console.log(_context.t0);
+            console.log(_context.t0.response);
+            console.log(_context.t0.request);
             (0, _alerts.showAlert)("error", _context.t0.response.data.message); //console.log(error.response.data);
 
-          case 11:
+          case 12:
           case "end":
             return _context.stop();
         }
@@ -31181,7 +31182,7 @@ if (delete_Budget_Btn) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            event.preventDefault();
+            e.preventDefault();
             _context.next = 3;
             return (0, _DataUpload.deleteBudget)(budgetId);
 
