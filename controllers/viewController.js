@@ -2,6 +2,7 @@ const User = require("./../models/user-model");
 const Budget = require("./../models/Budget-model");
 const AppError = require("../utils/appErrors");
 
+
 exports.homePage = (req, res) => {
   res
     .status(200)
@@ -35,9 +36,9 @@ exports.signIn = (req, res) => {
     });
 };
 
+
 exports.userProfile = (req, res) => {
   // const user = User.findOne({ _id: req.user.id });
-
   // if (!user)
   // return next(new AppError("Error!! User with that  ID does not exist", 404));
 
@@ -52,6 +53,7 @@ exports.userProfile = (req, res) => {
     });
 };
 
+
 exports.budgetProfile = (req, res) => {
   //console.log(res.locals);
   res
@@ -65,6 +67,7 @@ exports.budgetProfile = (req, res) => {
     });
 };
 
+
 exports.aboutUs = (req, res) => {
   res
     .status(200)
@@ -76,6 +79,8 @@ exports.aboutUs = (req, res) => {
       title: "About Us",
     });
 };
+
+
 exports.ContactPage = (req, res) => {
   res
     .status(200)
@@ -87,3 +92,4 @@ exports.ContactPage = (req, res) => {
       title: "Get in Touch",
     });
 };
+

@@ -6,7 +6,7 @@ block content
   section
     img(src='/sign-up/register-user.png' alt='').user-icon
     h3 Register
-    form.Sign-Up
+    form.Sign-Up(action="#" method="POST" name="signUp")
       .user-details
         .input-field
           label FIRSTNAME
@@ -28,7 +28,7 @@ block content
         .input-field
           label PASSWORD CONFIRM
           input(type='password' name='passwordConfirm' placeholder='PasswordConfirm' maxlength='12' required)#passwordConfirm
-      input(type='submit' value='Sign Up')#Sign-up
+      input(type='submit' name="submit" value='Sign Up')#Sign-up
 
       .sign-up-message
       .login-link Click 

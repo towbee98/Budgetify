@@ -20,7 +20,7 @@ const SendErrorDev = (err, req, res) => {
 };
 
 const SendErrorProd = (err, req, res) => {
-  console.log(err.message);
+  console.log(err.isOperational);
   console.log(req.originalUrl);
   //A)For API
   if (req.originalUrl.startsWith("/api")) {
@@ -91,7 +91,7 @@ module.exports = (err, req, res, next) => {
   err.status = err.status || "error";
 
   if (process.env.NODE_ENV === "production") {
-    let error = err;
+    error = { err };
     console.log(error.message);
     if (err.name === "CastError") {
       error = handleCastError(err);

@@ -10,7 +10,7 @@ const makeApiCall = async (url, params) => {
     });
 
     if (res.data.status === "Success") {
-      showAlert("success", "logged in successful !!");
+      showAlert("success", "Login Successful !!");
       window.setTimeout(window.location.replace("/userProfile"), 2000);
     }
   } catch (error) {
@@ -19,12 +19,8 @@ const makeApiCall = async (url, params) => {
   }
 };
 
-export const login = async (user, password) => {
-  if (user && password) {
-    let params = {
-      username: user,
-      password: password,
-    };
+export const login = async (details) => {
+  if (details) {
     const url = `/api/users/login`;
     // $.ajax({
     //   type: "POST",
@@ -38,7 +34,7 @@ export const login = async (user, password) => {
     //     $(".loader").hide();
     //   },
     // });
-    await makeApiCall(url, params);
+    await makeApiCall(url, details);
   }
 };
 export const logOut = async () => {

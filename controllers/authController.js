@@ -12,12 +12,14 @@ const tokenSign = function (id) {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
+
 const cookieOptions = {
   expires: new Date(
     Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 60 * 60 * 1000
   ),
   httpOnly: true,
 };
+
 const createSendToken = function (res, user, statusCode) {
   const token = tokenSign(user._id);
   if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
@@ -31,6 +33,7 @@ const createSendToken = function (res, user, statusCode) {
     data: { user },
   });
 };
+
 exports.signUp = catchAsync(async (req, res) => {
   const newUser = await User.create({
     firstName: req.body.firstName,
@@ -44,8 +47,17 @@ exports.signUp = catchAsync(async (req, res) => {
   const url = `${req.protocol}://${req.get("host")}/SignIn`;
   console.log(url);
   await new Email(newUser, url).sendWelcome();
-  createSendToken(res, newUser, 201);
-  // next();
+  // createSendToken(res, newUser, 201);
+
+  //return response to the user
+  res.status(201).json({
+    status: "success",
+    data: {
+      message:
+        "Account created successfully. You can now login with your details.",
+      newUser,
+    },
+  });
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -62,7 +74,6 @@ exports.login = catchAsync(async (req, res, next) => {
   }
   //3) If everything is ok ,send token to client
   createSendToken(res, user, 200);
-  
 });
 
 exports.logOut = (req, res) => {

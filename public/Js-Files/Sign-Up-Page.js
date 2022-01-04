@@ -1,19 +1,16 @@
 import axios from "axios";
 import { showAlert } from "./alerts";
 
-const makeApiCall = async (url, params) => {
+const makeApiCall = async (url, data) => {
   try {
     const res = await axios({
       method: "post",
       url,
-      data: params,
+      data,
     });
-
-    if (res.data.status === "Success") {
-      showAlert(
-        "success",
-        "Sign Up successful,Check the  your email to login or you can wait to be redirected to the login page!!"
-      );
+    console.log(res);
+    if (res.data.status === "success") {
+      showAlert("success", res.data.data.message);
       window.setTimeout(window.location.replace("/SignIn"), 5000);
     }
   } catch (error) {
@@ -22,22 +19,8 @@ const makeApiCall = async (url, params) => {
   }
 };
 
-export const signUp = async (
-  firstName,
-  lastName,
-  username,
-  email,
-  password,
-  passwordConfirm
-) => {
-  const params = {
-    firstName,
-    lastName,
-    username,
-    email,
-    password,
-    passwordConfirm,
-  };
+export const signUp = async (details) => {
   const url = `/api/users/signUp`;
-  await makeApiCall(url, params);
+  await makeApiCall(url, details);
+  console.log(details);
 };

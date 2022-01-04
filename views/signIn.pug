@@ -7,7 +7,7 @@ block content
     section
         img(src="/login-page/user-icon.png", alt="").user-icon
         h3 Sign In
-        form.form
+        form(action="#" method="POST" name="signIn")
             .input-field
                 i(class='fas fa-user')
                 input(type='text' name='username' placeholder='USERNAME' required)#username
@@ -16,7 +16,7 @@ block content
                 i(class='fas fa-lock')
                 input(type='password' name='password' placeholder='PASSWORD' required)#password
             br
-            input(type="submit" value='Login')#login-btn
+            input(type="submit" value='Login' name="submit")#login-btn
             br
             .login-message
             //- span.remember

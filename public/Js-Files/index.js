@@ -266,28 +266,32 @@ if (document.querySelector(".Contact-Us")) {
     message = "";
   });
 }
+
 //This is the sign up page
-if (document.querySelector(".Sign-Up")) {
-  const signUpBtn = document.forms[0][6];
+if (document.forms.signUp) {
+  const signUpBtn = document.forms.signUp[6];
+  console.log(signUpBtn);
   // const signUpMessage = document.querySelector(".sign-up-message");
   // const loginLink = document.querySelector(".login-link");
   // const loader = document.querySelector(".loader");
-  signUpBtn.addEventListener("click", async () => {
-    let firstName = document.querySelector("#firstname").textContent;
-    let lastName = document.querySelector("#lastname").textContent;
-    let username = document.querySelector("#username").textContent;
-    let email = document.querySelector("#email").value;
-    let password = document.querySelector("#password").value;
-    let passwordConfirm = document.querySelector("#passwordConfirm").value;
+  signUpBtn.addEventListener("click", async (e) => {
     e.preventDefault();
-    await signUp(
+    const firstName = document.forms.signUp.elements.firstname.value;
+    const lastName = document.forms.signUp.elements.lastname.value;
+    const username = document.forms.signUp.elements.username.value;
+    const email = document.forms.signUp.elements.email.value;
+    const password = document.forms.signUp.elements.password.value;
+    const passwordConfirm =
+      document.forms.signUp.elements.passwordConfirm.value;
+    const details = {
       firstName,
       lastName,
       username,
       email,
       password,
-      passwordConfirm
-    );
+      passwordConfirm,
+    };
+    await signUp(details);
     firstName = "";
     lastName = "";
     username = "";
@@ -298,19 +302,21 @@ if (document.querySelector(".Sign-Up")) {
 }
 
 //This is for the login page
-if (document.querySelector(".form")) {
-  const submitBtn = document.forms[0][2];
+if (document.forms.signIn) {
+  const submitBtn = document.forms.signIn[2];
+  console.log(submitBtn);
   //const rememberMeBtn = document.forms[0][3];
   const forgotPassword = document.forms[0][3];
   const loginMessage = document.querySelector(".login-message");
-  submitBtn.addEventListener("click", function () {
+  submitBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    const enteredUsername = document.forms[0][0];
-    const enteredpassword = document.forms[0][1];
+    let username = document.forms.signIn.elements.username.value;
+    let password = document.forms.signIn.elements.password.value;
+    const details = { username, password };
     //this controls what happens when the sign up button is clicked
-    login(enteredUsername.value, enteredpassword.value);
-    enteredUsername.value = "";
-    enteredpassword.value = "";
+    login(details);
+    username = "";
+    password = "";
   });
 }
 

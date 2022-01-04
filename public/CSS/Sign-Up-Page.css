@@ -155,6 +155,18 @@ section {
   width: 100%;
   box-sizing: border-box;
 }
+/* input {
+  padding: 10px;
+  background-color: transparent;
+  color: black;
+  font-size: medium;
+  outline: none;
+  border: transparent;
+  position: relative;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+} */
 ::placeholder {
   color: white;
 }

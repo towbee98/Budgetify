@@ -19,6 +19,7 @@ toggleBtn.addEventListener('click',function(){
     }
     click++
 })
+
 mainNav.addEventListener('click',function(){
     for(let i=0;i<mainNav.children.length;i++){
         if(event.target.textContent==mainNav.children[i].textContent){

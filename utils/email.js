@@ -24,11 +24,10 @@ module.exports = class Email {
       });
     }
     return nodemailer.createTransport({
-      host: process.env.SENDBLUE_SERVER,
-      port: process.env.SENDBLUE_PORT,
+      service: "Gmail",
       auth: {
-        user: process.env.SENDBLUE_USER,
-        pass: process.env.SENDBLUE_PASS,
+        user: process.env.Gmail_user,
+        pass: process.env.Gmail_pass,
       },
     });
   }
