@@ -8,13 +8,13 @@ const makeApiCall = async (url, data) => {
       url,
       data,
     });
-    console.log(res);
     if (res.data.status === "success") {
       showAlert("success", res.data.data.message);
-      window.setTimeout(window.location.replace("/SignIn"), 5000);
+      window.setTimeout(location.assign("/SignIn"), 5000);
     }
-  } catch (error) {
-    showAlert("error", error.response.data.message);
+  } catch (err) {
+    console.log(err);
+    showAlert("error", err.response.data.message);
     //console.log(error.response.data);
   }
 };
@@ -22,5 +22,4 @@ const makeApiCall = async (url, data) => {
 export const signUp = async (details) => {
   const url = `/api/users/signUp`;
   await makeApiCall(url, details);
-  console.log(details);
 };

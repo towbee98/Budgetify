@@ -276,13 +276,14 @@ if (document.forms.signUp) {
   // const loader = document.querySelector(".loader");
   signUpBtn.addEventListener("click", async (e) => {
     e.preventDefault();
-    const firstName = document.forms.signUp.elements.firstname.value;
-    const lastName = document.forms.signUp.elements.lastname.value;
-    const username = document.forms.signUp.elements.username.value;
-    const email = document.forms.signUp.elements.email.value;
-    const password = document.forms.signUp.elements.password.value;
-    const passwordConfirm =
-      document.forms.signUp.elements.passwordConfirm.value;
+
+    let firstName = document.forms.signUp.elements.firstname.value;
+    let lastName = document.forms.signUp.elements.lastname.value;
+    let username = document.forms.signUp.elements.username.value;
+    let email = document.forms.signUp.elements.email.value;
+    let password = document.forms.signUp.elements.password.value;
+    let passwordConfirm = document.forms.signUp.elements.passwordConfirm.value;
+
     const details = {
       firstName,
       lastName,
@@ -291,6 +292,7 @@ if (document.forms.signUp) {
       password,
       passwordConfirm,
     };
+
     await signUp(details);
     firstName = "";
     lastName = "";
@@ -304,7 +306,6 @@ if (document.forms.signUp) {
 //This is for the login page
 if (document.forms.signIn) {
   const submitBtn = document.forms.signIn[2];
-  console.log(submitBtn);
   //const rememberMeBtn = document.forms[0][3];
   const forgotPassword = document.forms[0][3];
   const loginMessage = document.querySelector(".login-message");
@@ -360,10 +361,10 @@ toggleBtn.addEventListener("click", function () {
   click++;
 });
 
-mainNav.addEventListener("click", async function () {
+mainNav.addEventListener("click", async function (e) {
   for (let i = 0; i < mainNav.children.length; i++) {
-    if (event.target.textContent == mainNav.children[i].textContent) {
-      if (event.target.textContent === "LogOut") {
+    if (e.target.textContent == mainNav.children[i].textContent) {
+      if (e.target.textContent === "LogOut") {
         await logOut();
       }
       click++;
