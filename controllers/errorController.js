@@ -20,8 +20,6 @@ const SendErrorDev = (err, req, res) => {
 };
 
 const SendErrorProd = (err, req, res) => {
-  console.log(err.isOperational);
-  console.log(req.originalUrl);
   //A)For API
   if (req.originalUrl.startsWith("/api")) {
     if (err.isOperational) {
@@ -67,7 +65,7 @@ const handleCastError = (err) => {
 //This handles duplicate errors
 const handleDuplicateError = (err) => {
   const value = err.errmsg.match(/{(.*?)}/)[1];
-  const message = `Duplicate field value : ${value}. Please use another value!`;
+  const message = `Duplicate value : ${value} already exists. Please use something else!`;
   return new AppError(message, 400);
 };
 //This handles validation errors
@@ -91,24 +89,22 @@ module.exports = (err, req, res, next) => {
   err.status = err.status || "error";
 
   if (process.env.NODE_ENV === "production") {
-    error = { err };
-    console.log(err.message);
     if (err.name === "CastError") {
-      error = handleCastError(err);
+      err = handleCastError(err);
     }
     if (err.code === 11000) {
-      error = handleDuplicateError(err);
+      err = handleDuplicateError(err);
     }
     if (err.name === "ValidationError") {
-      error = handleValidationError(err);
+      err = handleValidationError(err);
     }
     if (err.name === "JsonWebTokenError") {
-      error = handleJWTError();
+      err = handleJWTError();
     }
     if (err.name === "TokenExpiredError") {
-      error = handleJWTExpiredError();
+      err = handleJWTExpiredError();
     }
-    SendErrorProd(error, req, res);
+    SendErrorProd(err, req, res);
   } else if (process.env.NODE_ENV === "development") {
     SendErrorDev(err, req, res);
   }
