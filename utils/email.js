@@ -2,6 +2,8 @@ const nodemailer = require("nodemailer");
 //const mailGun = require("nodemailer-mailgun-transport");
 const pug = require("pug");
 const htmlToText = require("html-to-text");
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
 
 module.exports = class Email {
   constructor(user, url) {
@@ -13,21 +15,48 @@ module.exports = class Email {
   }
 
   createNewTransport() {
-    if (process.env.NODE_ENV === "development") {
+    if (process.env.NODE_ENV === "production") {
+      //Set up the OAUTH2 CLIENT
+      const oauth2Client = new OAuth2(
+        process.env.client_id,
+        process.env.client_secret,
+        process.env.redirect_uris
+      );
+
+      //SET THE REFRESH TOKEN
+      oauth2Client.setCredentials({
+        refresh_token: process.env.refresh_token,
+      });
+
+      //GET THE ACCESS TOKEN
+      const accessToken = oauth2Client.getAccessToken((err, token) => {
+        if (err) {
+          return err;
+        }
+        return token;
+      });
+      //DESCRIBE HOW TO SEND THE MAIL
       return nodemailer.createTransport({
-        host: process.env.SENDMAIL_HOST,
-        port: process.env.SENDMAIL_PORT,
+        service: "Gmail",
         auth: {
-          user: process.env.SENDMAIL_USER,
-          pass: process.env.SENDMAIL_PASSWORD,
+          type: "OAuth2",
+          user: process.env.Gmail_user,
+          clientId: process.env.client_id,
+          clientSecret: process.env.client_secret,
+          refreshToken: process.env.refresh_token,
+          accessToken,
+        },
+        tls: {
+          rejectUnauthorized: false,
         },
       });
     }
     return nodemailer.createTransport({
-      service: "Gmail",
+      host: process.env.SENDMAIL_HOST,
+      port: process.env.SENDMAIL_PORT,
       auth: {
-        user: process.env.Gmail_user,
-        pass: process.env.Gmail_pass,
+        user: process.env.SENDMAIL_USER,
+        pass: process.env.SENDMAIL_PASSWORD,
       },
     });
   }
