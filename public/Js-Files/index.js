@@ -1,5 +1,5 @@
 import "@babel/polyfill";
-import { login, logOut } from "./login-page";
+import { login, logOut, submitEmail, changePassword } from "./login-page";
 import { signUp } from "./Sign-Up-Page";
 import { updateData, updatePasswordData } from "./updateSettings";
 import {
@@ -56,14 +56,20 @@ const budget = document.querySelector(".total-allocation");
 const add_new_expenditure_btn = document.querySelector(
   ".add-expenditure button"
 );
+const cancel_expenditure_btn = document.querySelector(
+  ".cancel-new-expenditure"
+);
+
 const newExpenditureContainer = document.querySelector(
   ".add-new-expenditure-container form"
 );
+
 const new_expenditure_title = document.querySelector("#item");
 const new_allocated_expenditure = document.querySelector("#Amount");
 const save_new_expenditure = document.querySelector(".add-new-expenditure");
 const ctx = document.getElementById("pieChart");
 const allocation_Of_All_Expenses = document.querySelectorAll(".item-budget i");
+
 //const title_Of_All_Expenses = document.querySelectorAll(".item-name");
 
 //Declare all the variables
@@ -150,10 +156,15 @@ if (add_new_expenditure_btn) {
     add_new_expenditure_btn.style.display = "none";
   });
 }
-
+if (cancel_expenditure_btn) {
+  cancel_expenditure_btn.addEventListener("click", () => {
+    newExpenditureContainer.style.display = "none";
+    // add_new_expenditure_btn.style.display = "none";
+  });
+}
 if (save_new_expenditure) {
-  save_new_expenditure.addEventListener("click", async () => {
-    event.preventDefault();
+  save_new_expenditure.addEventListener("click", async (e) => {
+    e.preventDefault();
     const data = {
       budgetId,
       title: new_expenditure_title.value,
@@ -208,7 +219,7 @@ if (progressBars) {
 }
 if (delete_Expense_Btn) {
   delete_Expense_Btn.addEventListener("click", async () => {
-    event.preventDefault();
+    e.preventDefault();
     const data = {
       budgetId: budgetId,
       _id: expenseID,
@@ -218,7 +229,7 @@ if (delete_Expense_Btn) {
 }
 if (update_Expense_Btn) {
   update_Expense_Btn.addEventListener("click", async () => {
-    event.preventDefault();
+    e.preventDefault();
     const data = {
       budgetId: budgetId,
       title: expenseTitle.value,
@@ -239,13 +250,15 @@ if (create_Budget_Btn) {
     new_Budget_form.style.display = "none";
     backdrop.style.display = "none";
   });
-  document.querySelector(".save-budget").addEventListener("click", async () => {
-    event.preventDefault();
-    const budget = document.querySelector("#Gross-Budget").value;
-    await createBudget(budget);
-    new_Budget_form.style.display = "none";
-    backdrop.style.display = "none";
-  });
+  document
+    .querySelector(".save-budget")
+    .addEventListener("click", async (e) => {
+      e.preventDefault();
+      const budget = document.querySelector("#Gross-Budget").value;
+      await createBudget(budget);
+      new_Budget_form.style.display = "none";
+      backdrop.style.display = "none";
+    });
 }
 
 //This is for the Contact Us Page
@@ -274,6 +287,7 @@ if (document.forms.signUp) {
   // const signUpMessage = document.querySelector(".sign-up-message");
   // const loginLink = document.querySelector(".login-link");
   // const loader = document.querySelector(".loader");
+
   signUpBtn.addEventListener("click", async (e) => {
     e.preventDefault();
 
@@ -314,13 +328,38 @@ if (document.forms.signIn) {
     let username = document.forms.signIn.elements.username.value;
     let password = document.forms.signIn.elements.password.value;
     const details = { username, password };
-    //this controls what happens when the sign up button is clicked
+    //this controls what happens when the submit is clicked
     login(details);
     username = "";
     password = "";
   });
 }
 
+//This is the forget password function
+if (document.forms.forgetPassword) {
+  document.forms.forgetPassword.submit.addEventListener("click", (e) => {
+    e.preventDefault();
+    let email = document.forms.forgetPassword.elements.email.value;
+    const details = { email };
+    submitEmail(details);
+    email = "";
+  });
+}
+
+//This is the reset password function
+if (document.forms.resetPassword) {
+  document.forms.resetPassword.submit.addEventListener("click", (e) => {
+    e.preventDefault();
+    const token = document.forms.resetPassword.getAttribute("data-id");
+    let password = document.forms.resetPassword.elements.password.value;
+    let passwordConfirm =
+      document.forms.resetPassword.elements.passwordConfirm.value;
+    const details = { password, passwordConfirm };
+    changePassword(details, token);
+    password = "";
+    passwordConfirm = "";
+  });
+}
 //This is for the user Profile Page
 if (document.querySelector(".user-account")) {
   document.querySelector("#save").addEventListener("click", () => {
@@ -328,7 +367,6 @@ if (document.querySelector(".user-account")) {
     const lastName = document.querySelector("#last-name").value;
     const username = document.querySelector("#user-name").value;
     const email = document.querySelector("#e-mail").value;
-
     updateData(firstName, lastName, username, email);
   });
 }
@@ -337,7 +375,7 @@ if (document.querySelector(".user-account")) {
 if (document.querySelector(".user-password")) {
   //console.log(document.querySelector("#update"));
   document.querySelector("#update").addEventListener("click", async () => {
-    event.preventDefault();
+    e.preventDefault();
     const password = document.querySelector("#password").value;
     const currentPassword = document.querySelector("#currentPassword").value;
     const passwordConfirm = document.querySelector("#passwordConfirm").value;

@@ -1,31 +1,10 @@
 @import url("shared.css");
+
 body {
   overflow-x: hidden;
   overflow-y: auto;
 }
-a {
-  text-decoration: none;
-}
 
-.about-us {
-  width: 300px;
-  padding-top: 30px;
-  text-align: center;
-  font-size: large;
-  font-weight: bold;
-  font-family: cursive;
-  margin: 10px auto 5px auto;
-  color: #2b3252;
-  position: relative;
-  z-index: 5;
-  left: -1000px;
-  animation: moveright 2000ms 1s 1 forwards;
-}
-
-a {
-  text-decoration: none;
-  color: #ffffff;
-}
 section {
   font-family: Arial, Helvetica, sans-serif;
   margin-top: 20px;
@@ -36,9 +15,42 @@ section {
   justify-content: space-between;
 }
 
+.introduction {
+  position: relative;
+  text-align: center;
+  width: 200px;
+  height: max-content;
+  margin: auto auto 0 auto;
+  height: 300px;
+  left: -1000px;
+  animation: moveright 2000ms 1s 1 forwards;
+  z-index: 1;
+  font-size: 12px;
+  color: var(--dark-blue);
+}
+
+.register {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.register div {
+  border: 1px solid;
+  padding: 5px 10px;
+  border-radius: 15px;
+  border-color: var(--light-red);
+  font-size: medium;
+}
+.register div:hover {
+  background: var(--light-red);
+}
+.register div a {
+  color: black;
+}
+
 .illustration {
   width: 100vh;
-  background: #ef5455;
+  background: var(--light-red);
   margin: 0 -20px 0 -10px;
   position: relative;
   right: -1000px;
@@ -53,6 +65,7 @@ section {
   top: -1000px;
   animation: movedown 2000ms 3s 1 forwards;
 }
+
 @keyframes moveright {
   0% {
     left: -1000px;
@@ -77,7 +90,11 @@ section {
     top: 0;
   }
 }
-
+@media (min-width: 400px) {
+  .introduction {
+    margin: auto;
+  }
+}
 @media (min-width: 700px) {
   header {
     display: flex;
@@ -85,9 +102,11 @@ section {
     justify-content: flex-start;
     margin: -10px;
   }
+
   .toggle-btn {
     margin-right: 500px;
   }
+
   section {
     font-family: Arial, Helvetica, sans-serif;
     margin: 10px -10px -10px -10px;
@@ -99,14 +118,28 @@ section {
     height: 100vh;
   }
 
+  .introduction {
+    position: relative;
+    text-align: center;
+    width: 250px;
+    margin: auto;
+    height: 50vh;
+    left: -1000px;
+    animation: moveright 2000ms 1s 1 forwards;
+    z-index: 1;
+    font-size: 15px;
+  }
+
   .illustration {
     width: 50%;
     height: 100vh;
   }
+
   .illustration img {
     width: 100%;
     height: 80%;
   }
+
   .illustration::before {
     border-top: 340px solid transparent;
     border-bottom: 340px solid transparent;
@@ -118,3 +151,21 @@ section {
     width: 0;
   }
 }
+@media (min-width: 1195px) {
+  @keyframes moveright {
+    0% {
+      left: -1000px;
+    }
+    50% {
+      left: 0;
+    }
+    100% {
+      left: -50px;
+    }
+  }
+  body {
+    overflow-y: hidden;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

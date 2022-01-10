@@ -1,84 +1,15 @@
+@import url("shared.css");
+
 body {
   overflow-x: hidden;
   overflow-y: auto;
   background-color: #f2eeee;
 }
-header {
-  background: #2b3252;
-  padding: 10px 10px;
-  color: #ffffff;
-  display: flex;
-  flex-direction: row-reverse;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  margin: -10px;
-  width: 100%;
-  z-index: 3;
-  position: sticky;
-}
-.logo {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: large;
-  font-weight: bold;
-}
-.logo span {
-  color: #ef5455;
-}
-.toggle-btn {
-  display: block;
-  margin-right: 0;
-}
-.toggle-btn:hover {
-  cursor: pointer;
-}
-.box {
-  width: 23px;
-  margin-bottom: 4px;
-  height: 2px;
-  background-color: #ffffff;
-}
-.toggle-bar-1 {
-  opacity: 1;
-  transition: opacity 700ms ease-in-out 1s;
-}
-.toggle-bar-2 {
-  transform: rotateZ(0) translateX(0);
-  transition: transform 700ms ease-in-out 1s;
-}
-.toggle-bar-3 {
-  transform: rotateZ(0) translateX(0) translateY(0);
-  transform-origin: center;
-  transition: transform 700ms ease-in-out 1s;
-}
-.main-nav {
-  position: absolute;
-  top: 35px;
-  left: -300px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 200px;
-  background-color: #2b3252;
-  align-items: center;
-  opacity: 1;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: medium;
-  transition: left 700ms ease-in-out 1s;
-  z-index: 30;
-}
-.main-nav span {
-  margin-top: 70px;
-}
-.main-nav span a {
-  color: #ffffff;
-}
-a {
-  text-decoration: none;
-}
+
 a:hover {
   cursor: pointer;
 }
+
 section {
   display: grid;
   width: 100%;
@@ -246,6 +177,18 @@ input[class="add-new-expenditure"],
   position: relative;
   text-align: right;
   margin-bottom: 4px;
+}
+
+div .edit-expense,
+div .delete-expense,
+.add-expenditure button,
+.delete-budget button,
+.expense-Cancel,
+#expense-Save,
+#expense-delete,
+#delete-budget:hover,
+.add-new-expenditure:hover {
+  cursor: pointer;
 }
 .backdrop {
   top: 35px;

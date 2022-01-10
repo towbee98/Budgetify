@@ -2,7 +2,6 @@ const User = require("./../models/user-model");
 const Budget = require("./../models/Budget-model");
 const AppError = require("../utils/appErrors");
 
-
 exports.homePage = (req, res) => {
   res
     .status(200)
@@ -36,7 +35,6 @@ exports.signIn = (req, res) => {
     });
 };
 
-
 exports.userProfile = (req, res) => {
   // const user = User.findOne({ _id: req.user.id });
   // if (!user)
@@ -53,9 +51,7 @@ exports.userProfile = (req, res) => {
     });
 };
 
-
 exports.budgetProfile = (req, res) => {
-  //console.log(res.locals);
   res
     .status(200)
     .header(
@@ -66,7 +62,6 @@ exports.budgetProfile = (req, res) => {
       title: "Budget Profile",
     });
 };
-
 
 exports.aboutUs = (req, res) => {
   res
@@ -80,7 +75,6 @@ exports.aboutUs = (req, res) => {
     });
 };
 
-
 exports.ContactPage = (req, res) => {
   res
     .status(200)
@@ -93,3 +87,28 @@ exports.ContactPage = (req, res) => {
     });
 };
 
+exports.forgetPassword = (req, res) => {
+  res
+    .status(200)
+    .header(
+      "Content-Security-Policy",
+      "default-src  'self' ;connect-src ws://localhost:65068/ * "
+    )
+    .render("forgetPassword", {
+      title: "Forget Password",
+    });
+};
+
+exports.resetPassword = (req, res) => {
+  const token = req.params.token;
+  res
+    .status(200)
+    .header(
+      "Content-Security-Policy",
+      "default-src  'self' ;connect-src ws://localhost:65068/ * "
+    )
+    .render("resetPassword", {
+      title: "Reset Password",
+      token,
+    });
+};

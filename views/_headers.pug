@@ -10,16 +10,19 @@ nav.main-nav
         a(href='/') Home
     span
         if user
-            a LogOut
+            a#log-out LogOut
         else
             a(href='/SignIn') Login
     if budget || user
-        span
-            a(href='/userProfile') User Profile
-         
+        if budget
+            span
+                a(href='/userProfile') User Profile
+        else 
+            span
+                a(href='/budgetProfile') Budget Profile
     span
         a(href='/AboutUs') About
     span
         a(href='/ContactUs') Contact
-    span
-        a(href='#') Privacy Policy
+    //- span
+    //-     a(href='#') Privacy Policy

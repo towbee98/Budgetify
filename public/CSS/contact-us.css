@@ -1,70 +1,8 @@
+@import url("shared.css");
 body {
   overflow-x: hidden;
 }
-header {
-  background: #2b3252;
-  padding: 10px 10px;
-  color: #ffffff;
-  display: flex;
-  flex-direction: row-reverse;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  margin: -10px;
-  width: 100%;
-  z-index: 3;
-  position: sticky;
-}
-.logo {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: large;
-  font-weight: bold;
-}
-.logo span {
-  color: #ef5455;
-}
-.toggle-btn {
-  display: block;
-  margin-right: 0;
-}
-.box {
-  width: 23px;
-  margin-bottom: 4px;
-  height: 2px;
-  background-color: #ffffff;
-}
-.toggle-bar-1 {
-  opacity: 1;
-  transition: opacity 700ms ease-in-out 1s;
-}
-.toggle-bar-2 {
-  transform: rotateZ(0) translateX(0);
-  transition: transform 700ms ease-in-out 1s;
-}
-.toggle-bar-3 {
-  transform: rotateZ(0) translateX(0) translateY(0);
-  transform-origin: center;
-  transition: transform 700ms ease-in-out 1s;
-}
-.main-nav {
-  position: absolute;
-  top: 35px;
-  left: -300px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 200px;
-  background-color: #2b3252;
-  align-items: center;
-  opacity: 1;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: medium;
-  transition: left 700ms ease-in-out 1s;
-  z-index: 10;
-}
-.main-nav span {
-  margin-top: 70px;
-}
+
 a {
   text-decoration: none;
   color: #c2c1ba;

@@ -9,7 +9,8 @@
     "start:prod": "SET NODE_ENV=production&& nodemon server.js",
     "debug": "ndb server.js",
     "watch:js": "parcel watch ./public/Js-Files/index.js --out-dir ./public/Js-Files --out-file bundle.js --public-url ./",
-    "build:js": "parcel build ./public/Js-Files/index.js --out-dir ./public/Js-Files --out-file bundle.js --public-url  ./"
+    "build:js": "parcel build ./public/Js-Files/index.js --out-dir ./public/Js-Files --out-file bundle.js --public-url  ./",
+    "watch:css": "sass --watch ./public/CSS/styles.scss:./public/CSS/styles.css"
   },
   "author": "OLadele Tobi",
   "license": "ISC",

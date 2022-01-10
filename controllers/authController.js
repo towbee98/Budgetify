@@ -184,18 +184,13 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   //   please ignore this email`;
 
   try {
-    // await sendEmail({
-    //   email: user.email,
-    //   subject: "Your password reset token (valid for 10 min )",
-    //   message,
-    // });
     //3)Send it to user's email
     const resetUrl = `${req.protocol}://${req.get(
       "host"
-    )}/api/users/resetPassword/${resetToken}`;
+    )}/resetPassword/${resetToken}`;
     await new Email(user, resetUrl).sendPasswordReset();
     res.status(200).json({
-      status: "success",
+      status: "Success",
       message: "Token sent to email",
     });
   } catch (err) {
@@ -230,12 +225,12 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   user.passwordTokenExpiresAt = undefined;
   await user.save();
   //Log the user in and send JWT
-  createSendToken(res, user, 200);
+  //createSendToken(res, user, 200);
   // const token = tokenSign(user._id);
-  // res.status(200).json({
-  //   status: "success",
-  //   token: token,
-  // });
+  res.status(200).json({
+    status: "Success",
+    message: "Password successfully changed. You can now login.",
+  });
 });
 
 exports.updatePassword = catchAsync(async (req, res, next) => {

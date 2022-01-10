@@ -8455,7 +8455,7 @@ exports.showUpdateAlert = showUpdateAlert;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.logOut = exports.login = void 0;
+exports.changePassword = exports.submitEmail = exports.logOut = exports.login = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -8468,7 +8468,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var makeApiCall = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(url, params) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(url, method, params) {
     var res;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -8477,21 +8477,14 @@ var makeApiCall = /*#__PURE__*/function () {
             _context.prev = 0;
             _context.next = 3;
             return (0, _axios.default)({
-              method: "post",
+              method: method,
               url: url,
               data: params
             });
 
           case 3:
             res = _context.sent;
-
-            if (res.data.status === "Success") {
-              (0, _alerts.showAlert)("success", "Login Successful !!");
-              window.setTimeout(window.location.replace("/userProfile"), 2000);
-            }
-
-            _context.next = 10;
-            break;
+            return _context.abrupt("return", res);
 
           case 7:
             _context.prev = 7;
@@ -8506,24 +8499,23 @@ var makeApiCall = /*#__PURE__*/function () {
     }, _callee, null, [[0, 7]]);
   }));
 
-  return function makeApiCall(_x, _x2) {
+  return function makeApiCall(_x, _x2, _x3) {
     return _ref.apply(this, arguments);
   };
-}();
+}(); //login function
+
 
 var login = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(details) {
-    var url;
+    var _url, _method, res;
+
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            if (!details) {
-              _context2.next = 4;
-              break;
-            }
-
-            url = "/api/users/login"; // $.ajax({
+            _context2.prev = 0;
+            _url = "/api/users/login";
+            _method = "POST"; // $.ajax({
             //   type: "POST",
             //   url: url,
             //   dataType: "json",
@@ -8536,21 +8528,38 @@ var login = /*#__PURE__*/function () {
             //   },
             // });
 
-            _context2.next = 4;
-            return makeApiCall(url, details);
+            _context2.next = 5;
+            return makeApiCall(_url, _method, details);
 
-          case 4:
+          case 5:
+            res = _context2.sent;
+
+            if (res.data.status === "Success") {
+              (0, _alerts.showAlert)("success", "Login Successful !!");
+              window.setTimeout(window.location.replace("/userProfile"), 2000);
+            }
+
+            _context2.next = 12;
+            break;
+
+          case 9:
+            _context2.prev = 9;
+            _context2.t0 = _context2["catch"](0);
+            console.log(_context2.t0);
+
+          case 12:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2);
+    }, _callee2, null, [[0, 9]]);
   }));
 
-  return function login(_x3) {
+  return function login(_x4) {
     return _ref2.apply(this, arguments);
   };
-}();
+}(); //logout function
+
 
 exports.login = login;
 
@@ -8562,43 +8571,145 @@ var logOut = /*#__PURE__*/function () {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
-            _context3.next = 3;
-            return (0, _axios.default)({
-              method: "get",
-              url: "/api/users/logOut"
-            });
+            method = "GET";
+            url = "/api/users/logOut";
+            _context3.next = 5;
+            return makeApiCall(url, method);
 
-          case 3:
+          case 5:
             res = _context3.sent;
 
             if (res.data.status === "success") {
-              //showAlert("success", "logged in successful !!");
-              //location.reload(true);
-              window.setTimeout(window.location.assign("/"), 1000);
+              window.setTimeout(window.location.assign("/"), 5000);
             }
 
-            _context3.next = 10;
+            _context3.next = 13;
             break;
 
-          case 7:
-            _context3.prev = 7;
+          case 9:
+            _context3.prev = 9;
             _context3.t0 = _context3["catch"](0);
+            console.log(_context3.t0);
             (0, _alerts.showAlert)("error", _context3.t0.response.data.message); //console.log(error.response.data);
 
-          case 10:
+          case 13:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 7]]);
+    }, _callee3, null, [[0, 9]]);
   }));
 
   return function logOut() {
     return _ref3.apply(this, arguments);
   };
-}();
+}(); //forget password
+
 
 exports.logOut = logOut;
+
+var submitEmail = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(details) {
+    var _url2, _method2, res;
+
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _url2 = "/api/users/forgotPassword";
+            _method2 = "POST"; // $.ajax({
+            //   type: method,
+            //   url: url,
+            //   dataType: "json",
+            //   beforeSend: function () {
+            //     //this
+            //     $(".loader").show();
+            //   },
+            //   complete: function () {
+            //     $(".loader").hide();
+            //   },
+            // });
+
+            _context4.next = 5;
+            return makeApiCall(_url2, _method2, details);
+
+          case 5:
+            res = _context4.sent;
+
+            if (res.data.status === "Success") {
+              (0, _alerts.showAlert)("success", res.data.message);
+            }
+
+            _context4.next = 13;
+            break;
+
+          case 9:
+            _context4.prev = 9;
+            _context4.t0 = _context4["catch"](0);
+            console.log(_context4.t0);
+            (0, _alerts.showAlert)("error", _context4.t0.response.data.message);
+
+          case 13:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 9]]);
+  }));
+
+  return function submitEmail(_x5) {
+    return _ref4.apply(this, arguments);
+  };
+}(); //reset password function
+
+
+exports.submitEmail = submitEmail;
+
+var changePassword = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(details, token) {
+    var _url3, _method3, res;
+
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.prev = 0;
+            _url3 = "/api/users/resetPassword/".concat(token);
+            _method3 = "PATCH";
+            _context5.next = 5;
+            return makeApiCall(_url3, _method3, details);
+
+          case 5:
+            res = _context5.sent;
+
+            if (res.data.status === "Success") {
+              (0, _alerts.showAlert)("success", res.data.message);
+            }
+
+            _context5.next = 13;
+            break;
+
+          case 9:
+            _context5.prev = 9;
+            _context5.t0 = _context5["catch"](0);
+            console.log(_context5.t0);
+            (0, _alerts.showAlert)("error", _context5.t0.response.data.message);
+
+          case 13:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5, null, [[0, 9]]);
+  }));
+
+  return function changePassword(_x6, _x7) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+
+exports.changePassword = changePassword;
 },{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js"}],"Sign-Up-Page.js":[function(require,module,exports) {
 "use strict";
 
@@ -31103,6 +31214,7 @@ var update_Expense_Btn = document.querySelector("#expense-Save");
 var delete_Expense_Btn = document.querySelector("#expense-delete");
 var budget = document.querySelector(".total-allocation");
 var add_new_expenditure_btn = document.querySelector(".add-expenditure button");
+var cancel_expenditure_btn = document.querySelector(".cancel-new-expenditure");
 var newExpenditureContainer = document.querySelector(".add-new-expenditure-container form");
 var new_expenditure_title = document.querySelector("#item");
 var new_allocated_expenditure = document.querySelector("#Amount");
@@ -31205,33 +31317,45 @@ if (add_new_expenditure_btn) {
   });
 }
 
+if (cancel_expenditure_btn) {
+  cancel_expenditure_btn.addEventListener("click", function () {
+    newExpenditureContainer.style.display = "none"; // add_new_expenditure_btn.style.display = "none";
+  });
+}
+
 if (save_new_expenditure) {
-  save_new_expenditure.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-    var data;
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            event.preventDefault();
-            data = {
-              budgetId: budgetId,
-              title: new_expenditure_title.value,
-              allocated: new_allocated_expenditure.value
-            };
-            _context2.next = 4;
-            return (0, _DataUpload.createExpense)(data);
+  save_new_expenditure.addEventListener("click", /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
+      var data;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              e.preventDefault();
+              data = {
+                budgetId: budgetId,
+                title: new_expenditure_title.value,
+                allocated: new_allocated_expenditure.value
+              };
+              _context2.next = 4;
+              return (0, _DataUpload.createExpense)(data);
 
-          case 4:
-            add_new_expenditure_btn.style.display = "inline";
-            newExpenditureContainer.style.display = "none";
+            case 4:
+              add_new_expenditure_btn.style.display = "inline";
+              newExpenditureContainer.style.display = "none";
 
-          case 6:
-          case "end":
-            return _context2.stop();
+            case 6:
+            case "end":
+              return _context2.stop();
+          }
         }
-      }
-    }, _callee2);
-  })));
+      }, _callee2);
+    }));
+
+    return function (_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }());
 }
 
 if (editExpenseIcons) {
@@ -31281,7 +31405,7 @@ if (delete_Expense_Btn) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            event.preventDefault();
+            e.preventDefault();
             data = {
               budgetId: budgetId,
               _id: expenseID
@@ -31305,7 +31429,7 @@ if (update_Expense_Btn) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            event.preventDefault();
+            e.preventDefault();
             data = {
               budgetId: budgetId,
               title: expenseTitle.value,
@@ -31334,28 +31458,34 @@ if (create_Budget_Btn) {
     new_Budget_form.style.display = "none";
     backdrop.style.display = "none";
   });
-  document.querySelector(".save-budget").addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
-    var budget;
-    return regeneratorRuntime.wrap(function _callee5$(_context5) {
-      while (1) {
-        switch (_context5.prev = _context5.next) {
-          case 0:
-            event.preventDefault();
-            budget = document.querySelector("#Gross-Budget").value;
-            _context5.next = 4;
-            return (0, _DataUpload.createBudget)(budget);
+  document.querySelector(".save-budget").addEventListener("click", /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(e) {
+      var budget;
+      return regeneratorRuntime.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              e.preventDefault();
+              budget = document.querySelector("#Gross-Budget").value;
+              _context5.next = 4;
+              return (0, _DataUpload.createBudget)(budget);
 
-          case 4:
-            new_Budget_form.style.display = "none";
-            backdrop.style.display = "none";
+            case 4:
+              new_Budget_form.style.display = "none";
+              backdrop.style.display = "none";
 
-          case 6:
-          case "end":
-            return _context5.stop();
+            case 6:
+            case "end":
+              return _context5.stop();
+          }
         }
-      }
-    }, _callee5);
-  })));
+      }, _callee5);
+    }));
+
+    return function (_x2) {
+      return _ref5.apply(this, arguments);
+    };
+  }());
 } //This is for the Contact Us Page
 
 
@@ -31440,7 +31570,7 @@ if (document.forms.signUp) {
       }, _callee7);
     }));
 
-    return function (_x) {
+    return function (_x3) {
       return _ref7.apply(this, arguments);
     };
   }());
@@ -31460,11 +31590,41 @@ if (document.forms.signIn) {
     var details = {
       username: username,
       password: password
-    }; //this controls what happens when the sign up button is clicked
+    }; //this controls what happens when the submit is clicked
 
     (0, _loginPage.login)(details);
     username = "";
     password = "";
+  });
+} //This is the forget password function
+
+
+if (document.forms.forgetPassword) {
+  document.forms.forgetPassword.submit.addEventListener("click", function (e) {
+    e.preventDefault();
+    var email = document.forms.forgetPassword.elements.email.value;
+    var details = {
+      email: email
+    };
+    (0, _loginPage.submitEmail)(details);
+    email = "";
+  });
+} //This is the reset password function
+
+
+if (document.forms.resetPassword) {
+  document.forms.resetPassword.submit.addEventListener("click", function (e) {
+    e.preventDefault();
+    var token = document.forms.resetPassword.getAttribute("data-id");
+    var password = document.forms.resetPassword.elements.password.value;
+    var passwordConfirm = document.forms.resetPassword.elements.passwordConfirm.value;
+    var details = {
+      password: password,
+      passwordConfirm: passwordConfirm
+    };
+    (0, _loginPage.changePassword)(details, token);
+    password = "";
+    passwordConfirm = "";
   });
 } //This is for the user Profile Page
 
@@ -31488,7 +31648,7 @@ if (document.querySelector(".user-password")) {
       while (1) {
         switch (_context8.prev = _context8.next) {
           case 0:
-            event.preventDefault();
+            e.preventDefault();
             password = document.querySelector("#password").value;
             currentPassword = document.querySelector("#currentPassword").value;
             passwordConfirm = document.querySelector("#passwordConfirm").value;
@@ -31568,7 +31728,7 @@ mainNav.addEventListener("click", /*#__PURE__*/function () {
     }, _callee9);
   }));
 
-  return function (_x2) {
+  return function (_x4) {
     return _ref9.apply(this, arguments);
   };
 }());
@@ -31600,7 +31760,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50548" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65091" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -3,21 +3,19 @@ const viewRouter = express.Router();
 const viewController = require("./../controllers/viewController");
 const authController = require("./../controllers/authController");
 const budgetController = require("./../controllers/budget-Controllers");
+
 viewRouter.route("/").get(viewController.homePage);
 viewRouter.route("/SignUp").get(viewController.signUp);
 viewRouter.route("/SignIn").get(viewController.signIn);
-//viewRouter.use(authController.isLoggedin);
-viewRouter
-  .route("/userProfile")
-  .get(authController.protect, viewController.userProfile);
+viewRouter.route("/AboutUs").get(viewController.aboutUs);
+viewRouter.route("/ContactUs").get(viewController.ContactPage);
+viewRouter.route("/forgetPassword").get(viewController.forgetPassword);
+viewRouter.route("/resetPassword/:token").get(viewController.resetPassword);
+
+viewRouter.use(authController.protect);
+viewRouter.route("/userProfile").get(viewController.userProfile);
 viewRouter
   .route("/budgetProfile")
-  .get(
-    authController.protect,
-    budgetController.getAbudget,
-    viewController.budgetProfile
-  );
-viewRouter.get("/AboutUs", viewController.aboutUs);
-viewRouter.get("/ContactUs", viewController.ContactPage);
+  .get(budgetController.getAbudget, viewController.budgetProfile);
 
 module.exports = viewRouter;
