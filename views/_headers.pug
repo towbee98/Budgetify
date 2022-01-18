@@ -17,7 +17,10 @@ nav.main-nav
         if budget
             span
                 a(href='/userProfile') User Profile
-        else 
+        else if budget===undefined 
+             span
+                a(href='/userProfile') User Profile
+        else
             span
                 a(href='/budgetProfile') Budget Profile
     span

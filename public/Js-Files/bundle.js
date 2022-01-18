@@ -31289,25 +31289,31 @@ if (delete_Budget_CTA) {
 }
 
 if (delete_Budget_Btn) {
-  delete_Budget_Btn.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            e.preventDefault();
-            _context.next = 3;
-            return (0, _DataUpload.deleteBudget)(budgetId);
+  delete_Budget_Btn.addEventListener("click", /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              e.preventDefault();
+              _context.next = 3;
+              return (0, _DataUpload.deleteBudget)(budgetId);
 
-          case 3:
-            deleteBudgetContainer.style.display = "none";
+            case 3:
+              deleteBudgetContainer.style.display = "none";
 
-          case 4:
-          case "end":
-            return _context.stop();
+            case 4:
+            case "end":
+              return _context.stop();
+          }
         }
-      }
-    }, _callee);
-  })));
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }());
 }
 
 if (add_new_expenditure_btn) {
@@ -31318,8 +31324,10 @@ if (add_new_expenditure_btn) {
 }
 
 if (cancel_expenditure_btn) {
-  cancel_expenditure_btn.addEventListener("click", function () {
-    newExpenditureContainer.style.display = "none"; // add_new_expenditure_btn.style.display = "none";
+  cancel_expenditure_btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    newExpenditureContainer.style.display = "none";
+    add_new_expenditure_btn.style.display = "inline";
   });
 }
 
@@ -31352,7 +31360,7 @@ if (save_new_expenditure) {
       }, _callee2);
     }));
 
-    return function (_x) {
+    return function (_x2) {
       return _ref2.apply(this, arguments);
     };
   }());
@@ -31399,54 +31407,67 @@ if (progressBars) {
 }
 
 if (delete_Expense_Btn) {
-  delete_Expense_Btn.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-    var data;
-    return regeneratorRuntime.wrap(function _callee3$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            e.preventDefault();
-            data = {
-              budgetId: budgetId,
-              _id: expenseID
-            };
-            _context3.next = 4;
-            return (0, _DataUpload.deleteExpense)(data);
+  delete_Expense_Btn.addEventListener("click", /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(e) {
+      var data;
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              e.preventDefault();
+              data = {
+                budgetId: budgetId,
+                _id: expenseID
+              };
+              console.log(data);
+              _context3.next = 5;
+              return (0, _DataUpload.deleteExpense)(data);
 
-          case 4:
-          case "end":
-            return _context3.stop();
+            case 5:
+            case "end":
+              return _context3.stop();
+          }
         }
-      }
-    }, _callee3);
-  })));
+      }, _callee3);
+    }));
+
+    return function (_x3) {
+      return _ref3.apply(this, arguments);
+    };
+  }());
 }
 
 if (update_Expense_Btn) {
-  update_Expense_Btn.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
-    var data;
-    return regeneratorRuntime.wrap(function _callee4$(_context4) {
-      while (1) {
-        switch (_context4.prev = _context4.next) {
-          case 0:
-            e.preventDefault();
-            data = {
-              budgetId: budgetId,
-              title: expenseTitle.value,
-              allocated: allocatedExpense.value,
-              spent: expenseSpent.value,
-              _id: expenseID
-            };
-            _context4.next = 4;
-            return (0, _DataUpload.updateExpense)(data);
+  update_Expense_Btn.addEventListener("click", /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(e) {
+      var data;
+      return regeneratorRuntime.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              e.preventDefault();
+              data = {
+                budgetId: budgetId,
+                title: expenseTitle.value,
+                allocated: allocatedExpense.value,
+                spent: expenseSpent.value,
+                _id: expenseID
+              };
+              _context4.next = 4;
+              return (0, _DataUpload.updateExpense)(data);
 
-          case 4:
-          case "end":
-            return _context4.stop();
+            case 4:
+            case "end":
+              return _context4.stop();
+          }
         }
-      }
-    }, _callee4);
-  })));
+      }, _callee4);
+    }));
+
+    return function (_x4) {
+      return _ref4.apply(this, arguments);
+    };
+  }());
 }
 
 if (create_Budget_Btn) {
@@ -31482,7 +31503,7 @@ if (create_Budget_Btn) {
       }, _callee5);
     }));
 
-    return function (_x2) {
+    return function (_x5) {
       return _ref5.apply(this, arguments);
     };
   }());
@@ -31491,41 +31512,46 @@ if (create_Budget_Btn) {
 
 if (document.querySelector(".Contact-Us")) {
   var submitBtn = document.forms[0][5];
-  submitBtn.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
-    var firstName, lastname, email, phone, message;
-    return regeneratorRuntime.wrap(function _callee6$(_context6) {
-      while (1) {
-        switch (_context6.prev = _context6.next) {
-          case 0:
-            e.preventDefault();
-            firstName = document.querySelector("#firstname").value;
-            lastname = document.querySelector("#lastname").value;
-            email = document.querySelector("#email").value;
-            phone = document.querySelector("#phone-number").value;
-            message = document.querySelector("#message").value;
-            _context6.next = 8;
-            return (0, _DataUpload.submitContactMsg)(firstName, lastname, email, phone, message);
+  submitBtn.addEventListener("click", /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(e) {
+      var firstName, lastname, email, phone, message;
+      return regeneratorRuntime.wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              e.preventDefault();
+              firstName = document.querySelector("#firstname").value;
+              lastname = document.querySelector("#lastname").value;
+              email = document.querySelector("#email").value;
+              phone = document.querySelector("#phone-number").value;
+              message = document.querySelector("#message").value;
+              _context6.next = 8;
+              return (0, _DataUpload.submitContactMsg)(firstName, lastname, email, phone, message);
 
-          case 8:
-            firstName = "";
-            lastname = "";
-            email = "";
-            phone = "";
-            message = "";
+            case 8:
+              firstName = "";
+              lastname = "";
+              email = "";
+              phone = "";
+              message = "";
 
-          case 13:
-          case "end":
-            return _context6.stop();
+            case 13:
+            case "end":
+              return _context6.stop();
+          }
         }
-      }
-    }, _callee6);
-  })));
+      }, _callee6);
+    }));
+
+    return function (_x6) {
+      return _ref6.apply(this, arguments);
+    };
+  }());
 } //This is the sign up page
 
 
 if (document.forms.signUp) {
-  var signUpBtn = document.forms.signUp[6];
-  console.log(signUpBtn); // const signUpMessage = document.querySelector(".sign-up-message");
+  var signUpBtn = document.forms.signUp[6]; // const signUpMessage = document.querySelector(".sign-up-message");
   // const loginLink = document.querySelector(".login-link");
   // const loader = document.querySelector(".loader");
 
@@ -31570,7 +31596,7 @@ if (document.forms.signUp) {
       }, _callee7);
     }));
 
-    return function (_x3) {
+    return function (_x7) {
       return _ref7.apply(this, arguments);
     };
   }());
@@ -31578,21 +31604,17 @@ if (document.forms.signUp) {
 
 
 if (document.forms.signIn) {
-  var _submitBtn = document.forms.signIn[2]; //const rememberMeBtn = document.forms[0][3];
-
-  var forgotPassword = document.forms[0][3];
-  var loginMessage = document.querySelector(".login-message");
-
-  _submitBtn.addEventListener("click", function (e) {
+  //const rememberMeBtn = document.forms[0][3];
+  document.forms.signIn[2].addEventListener("click", function (e) {
     e.preventDefault();
     var username = document.forms.signIn.elements.username.value;
     var password = document.forms.signIn.elements.password.value;
     var details = {
       username: username,
       password: password
-    }; //this controls what happens when the submit is clicked
+    };
+    (0, _loginPage.login)(details); //this controls what happens when the submit is clicked
 
-    (0, _loginPage.login)(details);
     username = "";
     password = "";
   });
@@ -31641,26 +31663,31 @@ if (document.querySelector(".user-account")) {
 
 
 if (document.querySelector(".user-password")) {
-  //console.log(document.querySelector("#update"));
-  document.querySelector("#update").addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
-    var password, currentPassword, passwordConfirm;
-    return regeneratorRuntime.wrap(function _callee8$(_context8) {
-      while (1) {
-        switch (_context8.prev = _context8.next) {
-          case 0:
-            e.preventDefault();
-            password = document.querySelector("#password").value;
-            currentPassword = document.querySelector("#currentPassword").value;
-            passwordConfirm = document.querySelector("#passwordConfirm").value;
-            (0, _updateSettings.updatePasswordData)(password, currentPassword, passwordConfirm);
+  document.querySelector("#update").addEventListener("click", /*#__PURE__*/function () {
+    var _ref8 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(e) {
+      var password, currentPassword, passwordConfirm;
+      return regeneratorRuntime.wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              e.preventDefault();
+              password = document.querySelector("#password").value;
+              currentPassword = document.querySelector("#currentPassword").value;
+              passwordConfirm = document.querySelector("#passwordConfirm").value;
+              (0, _updateSettings.updatePasswordData)(password, currentPassword, passwordConfirm);
 
-          case 5:
-          case "end":
-            return _context8.stop();
+            case 5:
+            case "end":
+              return _context8.stop();
+          }
         }
-      }
-    }, _callee8);
-  })));
+      }, _callee8);
+    }));
+
+    return function (_x8) {
+      return _ref8.apply(this, arguments);
+    };
+  }());
 }
 
 var click = 0;
@@ -31728,7 +31755,7 @@ mainNav.addEventListener("click", /*#__PURE__*/function () {
     }, _callee9);
   }));
 
-  return function (_x4) {
+  return function (_x9) {
     return _ref9.apply(this, arguments);
   };
 }());
@@ -31760,7 +31787,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65091" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60878" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

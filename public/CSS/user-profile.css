@@ -178,11 +178,13 @@ i {
   padding: 2px 7px;
   color: #485281;
   font-size: small;
-  pointer-events: stroke;
   border: 1px black solid;
   border-radius: 4px;
 }
-
+.save-budget:hover,
+.cancel-btn:hover {
+  cursor: pointer;
+}
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;

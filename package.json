@@ -10,7 +10,8 @@
     "debug": "ndb server.js",
     "watch:js": "parcel watch ./public/Js-Files/index.js --out-dir ./public/Js-Files --out-file bundle.js --public-url ./",
     "build:js": "parcel build ./public/Js-Files/index.js --out-dir ./public/Js-Files --out-file bundle.js --public-url  ./",
-    "watch:css": "sass --watch ./public/CSS/styles.scss:./public/CSS/styles.css"
+    "watch:css": "sass --watch ./public/CSS/styles.scss:./public/CSS/styles.css",
+    "test": "mocha   ./controllers/test/testLogin.js"
   },
   "author": "OLadele Tobi",
   "license": "ISC",
@@ -38,6 +39,9 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.1.3",
     "ndb": "^1.1.5",
     "nodemon": "^2.0.4",
     "parcel-bundler": "^1.12.4"

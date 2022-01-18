@@ -110,10 +110,10 @@ userSchema.methods.createPasswordResetToken = async function () {
     .createHash("sha256")
     .update(resetToken)
     .digest("hex");
-  //console.log({ resetToken }, this.passwordResetToken);
+
   //this ensures the reset token is valid for just 10 minutes
   this.passwordTokenExpiresAt = Date.now() + 10 * 60 * 1000;
-  //console.log(this.passwordTokenExpiresAt);
+
   return resetToken;
 };
 

@@ -144,7 +144,7 @@ if (delete_Budget_CTA) {
   });
 }
 if (delete_Budget_Btn) {
-  delete_Budget_Btn.addEventListener("click", async () => {
+  delete_Budget_Btn.addEventListener("click", async (e) => {
     e.preventDefault();
     await deleteBudget(budgetId);
     deleteBudgetContainer.style.display = "none";
@@ -157,9 +157,10 @@ if (add_new_expenditure_btn) {
   });
 }
 if (cancel_expenditure_btn) {
-  cancel_expenditure_btn.addEventListener("click", () => {
+  cancel_expenditure_btn.addEventListener("click", (e) => {
+    e.preventDefault();
     newExpenditureContainer.style.display = "none";
-    // add_new_expenditure_btn.style.display = "none";
+    add_new_expenditure_btn.style.display = "inline";
   });
 }
 if (save_new_expenditure) {
@@ -218,17 +219,18 @@ if (progressBars) {
   });
 }
 if (delete_Expense_Btn) {
-  delete_Expense_Btn.addEventListener("click", async () => {
+  delete_Expense_Btn.addEventListener("click", async (e) => {
     e.preventDefault();
     const data = {
       budgetId: budgetId,
       _id: expenseID,
     };
+    console.log(data);
     await deleteExpense(data);
   });
 }
 if (update_Expense_Btn) {
-  update_Expense_Btn.addEventListener("click", async () => {
+  update_Expense_Btn.addEventListener("click", async (e) => {
     e.preventDefault();
     const data = {
       budgetId: budgetId,
@@ -264,7 +266,7 @@ if (create_Budget_Btn) {
 //This is for the Contact Us Page
 if (document.querySelector(".Contact-Us")) {
   const submitBtn = document.forms[0][5];
-  submitBtn.addEventListener("click", async () => {
+  submitBtn.addEventListener("click", async (e) => {
     e.preventDefault();
     let firstName = document.querySelector("#firstname").value;
     let lastname = document.querySelector("#lastname").value;
@@ -283,7 +285,6 @@ if (document.querySelector(".Contact-Us")) {
 //This is the sign up page
 if (document.forms.signUp) {
   const signUpBtn = document.forms.signUp[6];
-  console.log(signUpBtn);
   // const signUpMessage = document.querySelector(".sign-up-message");
   // const loginLink = document.querySelector(".login-link");
   // const loader = document.querySelector(".loader");
@@ -319,17 +320,13 @@ if (document.forms.signUp) {
 
 //This is for the login page
 if (document.forms.signIn) {
-  const submitBtn = document.forms.signIn[2];
   //const rememberMeBtn = document.forms[0][3];
-  const forgotPassword = document.forms[0][3];
-  const loginMessage = document.querySelector(".login-message");
-  submitBtn.addEventListener("click", function (e) {
+  document.forms.signIn[2].addEventListener("click", function (e) {
     e.preventDefault();
     let username = document.forms.signIn.elements.username.value;
     let password = document.forms.signIn.elements.password.value;
     const details = { username, password };
-    //this controls what happens when the submit is clicked
-    login(details);
+    login(details); //this controls what happens when the submit is clicked
     username = "";
     password = "";
   });
@@ -373,8 +370,7 @@ if (document.querySelector(".user-account")) {
 
 //This is for the user Profile Page where we update the password
 if (document.querySelector(".user-password")) {
-  //console.log(document.querySelector("#update"));
-  document.querySelector("#update").addEventListener("click", async () => {
+  document.querySelector("#update").addEventListener("click", async (e) => {
     e.preventDefault();
     const password = document.querySelector("#password").value;
     const currentPassword = document.querySelector("#currentPassword").value;

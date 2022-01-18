@@ -165,12 +165,14 @@ input[type="number"] {
   border-bottom: 1px solid;
 }
 input[class="add-new-expenditure"],
+input[class="cancel-new-expenditure"],
 .add-expenditure button,
 .delete-budget button {
   text-align: center;
   font-weight: bolder;
   color: #484d66;
   border-radius: 3px;
+  margin: 0.5rem;
 }
 .add-expenditure,
 .delete-budget {
@@ -187,7 +189,8 @@ div .delete-expense,
 #expense-Save,
 #expense-delete,
 #delete-budget:hover,
-.add-new-expenditure:hover {
+.add-new-expenditure:hover,
+input[class="cancel-new-expenditure"]:hover {
   cursor: pointer;
 }
 .backdrop {
