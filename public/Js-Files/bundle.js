@@ -8469,7 +8469,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var makeApiCall = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(url, method, params) {
-    var res;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -8483,20 +8482,19 @@ var makeApiCall = /*#__PURE__*/function () {
             });
 
           case 3:
-            res = _context.sent;
-            return _context.abrupt("return", res);
+            return _context.abrupt("return", _context.sent);
 
-          case 7:
-            _context.prev = 7;
+          case 6:
+            _context.prev = 6;
             _context.t0 = _context["catch"](0);
             (0, _alerts.showAlert)("error", _context.t0.response.data.message); //console.log(error.response.data);
 
-          case 10:
+          case 9:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee, null, [[0, 6]]);
   }));
 
   return function makeApiCall(_x, _x2, _x3) {
@@ -8507,15 +8505,14 @@ var makeApiCall = /*#__PURE__*/function () {
 
 var login = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(details) {
-    var _url, _method, res;
-
+    var url, method, res;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
-            _url = "/api/users/login";
-            _method = "POST"; // $.ajax({
+            url = "/api/users/login";
+            method = "POST"; // $.ajax({
             //   type: "POST",
             //   url: url,
             //   dataType: "json",
@@ -8529,7 +8526,7 @@ var login = /*#__PURE__*/function () {
             // });
 
             _context2.next = 5;
-            return makeApiCall(_url, _method, details);
+            return makeApiCall(url, method, details);
 
           case 5:
             res = _context2.sent;
@@ -8565,7 +8562,7 @@ exports.login = login;
 
 var logOut = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-    var res;
+    var method, url, res;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
@@ -8590,7 +8587,7 @@ var logOut = /*#__PURE__*/function () {
             _context3.prev = 9;
             _context3.t0 = _context3["catch"](0);
             console.log(_context3.t0);
-            (0, _alerts.showAlert)("error", _context3.t0.response.data.message); //console.log(error.response.data);
+            (0, _alerts.showAlert)("error", _context3.t0.response.data.message);
 
           case 13:
           case "end":
@@ -8610,15 +8607,14 @@ exports.logOut = logOut;
 
 var submitEmail = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(details) {
-    var _url2, _method2, res;
-
+    var url, method, res;
     return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.prev = 0;
-            _url2 = "/api/users/forgotPassword";
-            _method2 = "POST"; // $.ajax({
+            url = "/api/users/forgotPassword";
+            method = "POST"; // $.ajax({
             //   type: method,
             //   url: url,
             //   dataType: "json",
@@ -8632,7 +8628,7 @@ var submitEmail = /*#__PURE__*/function () {
             // });
 
             _context4.next = 5;
-            return makeApiCall(_url2, _method2, details);
+            return makeApiCall(url, method, details);
 
           case 5:
             res = _context4.sent;
@@ -8668,17 +8664,16 @@ exports.submitEmail = submitEmail;
 
 var changePassword = /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(details, token) {
-    var _url3, _method3, res;
-
+    var url, method, res;
     return regeneratorRuntime.wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
             _context5.prev = 0;
-            _url3 = "/api/users/resetPassword/".concat(token);
-            _method3 = "PATCH";
+            url = "/api/users/resetPassword/".concat(token);
+            method = "PATCH";
             _context5.next = 5;
-            return makeApiCall(_url3, _method3, details);
+            return makeApiCall(url, method, details);
 
           case 5:
             res = _context5.sent;
@@ -8751,17 +8746,17 @@ var makeApiCall = /*#__PURE__*/function () {
               window.setTimeout(location.assign("/SignIn"), 5000);
             }
 
-            _context.next = 12;
+            _context.next = 10;
             break;
 
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            console.log(_context.t0.response);
-            console.log(_context.t0.request);
+            // console.log(err.response);
+            // console.log(err.request);
             (0, _alerts.showAlert)("error", _context.t0.response.data.message); //console.log(error.response.data);
 
-          case 12:
+          case 10:
           case "end":
             return _context.stop();
         }
@@ -31618,6 +31613,14 @@ if (document.forms.signIn) {
     username = "";
     password = "";
   });
+} //this is the log out function
+
+
+if (document.querySelector("#log-out")) {
+  document.querySelector("#log-out").addEventListener("click", function (e) {
+    e.preventDefault();
+    (0, _loginPage.logOut)();
+  });
 } //This is the forget password function
 
 
@@ -31652,7 +31655,8 @@ if (document.forms.resetPassword) {
 
 
 if (document.querySelector(".user-account")) {
-  document.querySelector("#save").addEventListener("click", function () {
+  document.querySelector("#save").addEventListener("click", function (e) {
+    e.preventDefault();
     var firstName = document.querySelector("#first-name").value;
     var lastName = document.querySelector("#last-name").value;
     var username = document.querySelector("#user-name").value;

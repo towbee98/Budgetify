@@ -132,7 +132,6 @@ if (ctx) {
     },
   });
 }
-
 if (budget) {
   budgetId = budget.getAttribute("data-id");
 }
@@ -332,6 +331,14 @@ if (document.forms.signIn) {
   });
 }
 
+//this is the log out function
+if (document.querySelector("#log-out")) {
+  document.querySelector("#log-out").addEventListener("click", (e) => {
+    e.preventDefault();
+    logOut();
+  });
+}
+
 //This is the forget password function
 if (document.forms.forgetPassword) {
   document.forms.forgetPassword.submit.addEventListener("click", (e) => {
@@ -359,7 +366,8 @@ if (document.forms.resetPassword) {
 }
 //This is for the user Profile Page
 if (document.querySelector(".user-account")) {
-  document.querySelector("#save").addEventListener("click", () => {
+  document.querySelector("#save").addEventListener("click", (e) => {
+    e.preventDefault();
     const firstName = document.querySelector("#first-name").value;
     const lastName = document.querySelector("#last-name").value;
     const username = document.querySelector("#user-name").value;

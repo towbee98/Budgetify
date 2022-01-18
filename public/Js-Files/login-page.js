@@ -3,12 +3,11 @@ import { showAlert } from "./alerts";
 
 const makeApiCall = async (url, method, params) => {
   try {
-    const res = await axios({
+    return await axios({
       method,
       url,
       data: params,
     });
-    return res;
   } catch (error) {
     showAlert("error", error.response.data.message);
     //console.log(error.response.data);
@@ -45,8 +44,8 @@ export const login = async (details) => {
 //logout function
 export const logOut = async () => {
   try {
-    method = "GET";
-    url = `/api/users/logOut`;
+    const method = "GET";
+    const url = `/api/users/logOut`;
     const res = await makeApiCall(url, method);
     if (res.data.status === "success") {
       window.setTimeout(window.location.assign("/"), 5000);
@@ -54,7 +53,6 @@ export const logOut = async () => {
   } catch (error) {
     console.log(error);
     showAlert("error", error.response.data.message);
-    //console.log(error.response.data);
   }
 };
 

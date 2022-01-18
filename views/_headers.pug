@@ -14,11 +14,8 @@ nav.main-nav
         else
             a(href='/SignIn') Login
     if budget || user
-        if budget
+        if budget || budget===undefined
             span
-                a(href='/userProfile') User Profile
-        else if budget===undefined 
-             span
                 a(href='/userProfile') User Profile
         else
             span
