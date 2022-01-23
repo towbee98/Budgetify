@@ -33,16 +33,7 @@ const expenditureSchema = new mongoose.Schema({
   },
 });
 const budgetSchema = new mongoose.Schema({
-  // budget_id: {
-  //   type: Number,
-  //   required: true,
-  //   unique: true,
-  // },
-  // username: {
-  //   type: String,
-  //   required: [true, "Username cannot be empty"],
-  //   unique: true,
-  // },
+
   user: {
     type: mongoose.Schema.ObjectId,
     ref: "User",

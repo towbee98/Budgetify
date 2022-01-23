@@ -11,7 +11,7 @@
     "watch:js": "parcel watch ./public/Js-Files/index.js --out-dir ./public/Js-Files --out-file bundle.js --public-url ./",
     "build:js": "parcel build ./public/Js-Files/index.js --out-dir ./public/Js-Files --out-file bundle.js --public-url  ./",
     "watch:css": "sass --watch ./public/CSS/styles.scss:./public/CSS/styles.css",
-    "test": "mocha   ./controllers/test/testLogin.js"
+    "test": "mocha --timeout 15000 -c ./controllers/test/testLogin.js -R nyan"
   },
   "author": "OLadele Tobi",
   "license": "ISC",
@@ -44,7 +44,8 @@
     "mocha": "^9.1.3",
     "ndb": "^1.1.5",
     "nodemon": "^2.0.4",
-    "parcel-bundler": "^1.12.4"
+    "parcel-bundler": "^1.12.4",
+    "supertest": "^6.2.2"
   },
   "engines": {
     "node": ">=10.0.0"
