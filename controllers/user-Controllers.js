@@ -1,9 +1,9 @@
 const User = require("./../models/user-model");
 const catchAsync = require("./../utils/catchAsync");
-const express = require("express");
 const AppError = require("./../utils/appErrors");
 const factory = require("./factoryHandler");
 const sendMail = require("./../utils/receiveEmail");
+
 //function to extract the required fields for querying the db
 const filterObj = function (obj, ...allowedFields) {
   const newObj = {};
@@ -78,11 +78,12 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
 exports.getAuser = catchAsync(async (req, res, next) => {
   if (req.user.role === "admin") {
     const user = await User.findById(req.params.id);
+
+    res.status(200).json({
+      status: "Success",
+      data: user,
+    });
   }
-  res.status(200).json({
-    status: "Success",
-    data: user,
-  });
 });
 
 exports.deleteUser = factory.deleteOne(User);

@@ -5,7 +5,6 @@ const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appErrors");
 const { promisify } = require("util");
 const Email = require("./../utils/email");
-//const { url } = require("inspector");
 
 const tokenSign = function (id) {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -156,8 +155,6 @@ exports.isLoggedin = async (req, res, next) => {
 
 exports.restrictUser = (...roles) => {
   return (req, res, next) => {
-    //console.log(req.user);
-    //console.log(roles);
     if (!roles.includes(req.user.role)) {
       return next(new AppError("Restricted from performing this action", 403));
     }

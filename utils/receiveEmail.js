@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 const mailGun = require("nodemailer-mailgun-transport");
-const catchAsync = require("./../utils/catchAsync");
+//const catchAsync = require("./../utils/catchAsync");
 // const pug = require("pug");
 // const htmlToText = require("html-to-text");
 

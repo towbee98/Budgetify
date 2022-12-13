@@ -7,15 +7,15 @@ const server = require("../../server");
 //Assertion Style BDD
 const expect = chai.expect;
 const assert = chai.assert;
-let details, passLength, passConfimrLength;
+let details, passLength;
 let conn = request(server);
 describe("Authentication", () => {
   //Tests the login routes
   describe("POST /api/users/login", function () {
     beforeEach(function () {
       details = {
-        username: "Adeloporo",
-        password: "pass1234",
+        "username":"oladtobi97",
+        "password":"towbee98?"
       };
     });
     it("this checks the type of data supplied by the user for authentication", function (done) {
@@ -28,10 +28,11 @@ describe("Authentication", () => {
       conn
         .post("/api/users/login")
         .send(details)
+        .expect(200)
         .end(function (err, res) {
-          //if (err) return done(err);
-          expect(res.status).to.equal(200);
-          done();
+          if (err) return done(err);
+          //expect(res.status).to.equal(200);
+          return done();
         });
     });
   });
@@ -85,8 +86,39 @@ describe("Authentication", () => {
         });
     });
   });
-
   //Tests the forget password route
-
+  describe("POST /api/users/forgotPassword", function () {
+    before(function () {
+      details = {
+        email: "tobiemma200@gmail.com",
+      };
+    });
+    it("checks the forgotPassword functionality", function (done) {
+      assert.exists(details.email, "Email can neither be null nor undefined");
+      expect(details.email).to.be.a("String");
+      conn
+        .post("/api/users/forgotPassword")
+        .send(details)
+        .expect(200)
+        .end(function (err, res) {
+          if (err) return done(err);
+          return done();
+        });
+    });
+  });
   //Tests the reset password
+  // describe("POST /api/users/resetPassword", function () {
+  //   before("verify the type of data sent to the server",function(){
+  //     details={
+  //       password:
+  //     }
+  //   })
+  //   it("tests the reset password functionality", function (done) {
+
+  //     done();
+  //   });
+  // });
+  // after(() => {
+  //   server.close();
+  // });
 });
